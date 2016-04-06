@@ -1,0 +1,20 @@
+extends layout
+
+block content
+  p
+    this is a test of my classes.
+    span.code this is some code.
+  .code This is a multi-line test of my <br> code to see how<br> well it works.
+  table.code
+    tr
+      td 1<br>2<br>3
+      td This is a multi-line test of my <br> code to see how<br> well it works.
+  p
+    span.bold Bold TEXT
+    span.italics Italic TEXT
+    span.strikethrough Struke Though TEXT
+    span.block This is a block.
+  .block This is a bigger block<br>hrmmmm<br> I wonder how this is working.
+  textarea(cols=40 rows=5, id='inputText')
+  .code(id='inputResult')
+  textarea(cols=40 rows=5 id='inputText2')
