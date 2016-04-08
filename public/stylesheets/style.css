@@ -15,21 +15,30 @@ textarea {
   margin-left: 5%;
   width: 90%;
 }
-
+code {
+  font-family: 'Inconsolata';
+  background: rgb(231, 252, 231);
+}
+code table {
+  margin-top: 1rem;
+  margin-bottom: 1rem;
+  background: rgb(231, 252, 231);
+}
+code td:first-child{
+  border-right: 2px solid rgb(119, 250, 119);
+  width: 30px;
+}
 .code {
   font-family: 'Inconsolata';
   background: rgb(231, 252, 231);
 }
-table.code {
-  margin-top: 1rem;
-  margin-bottom: 1rem;
-}
-.code td:first-child{
-  border-right: 2px solid rgb(119, 250, 119);
-  width: 30px;
+block {
+  border-left: 5px solid rgb(199, 199, 199);
+  padding-left: 5px;
+  display: block;
 }
 .bold {
-  font-weight: bold;
+  font-weight: bolder;
 }
 .italics {
   font-style: italic;

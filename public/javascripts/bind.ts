@@ -25,17 +25,18 @@ class ParsedBound extends Bound {
   }
   parser(input: string) {
     input = this.handleCodeBlocks(input);
-    input = this.handleBigBlocks(input);
+    input = this.handleBlocks(input);
+    input = input.split('\n').join('<br>');
     input = this.handleSpecial('*', input, '<span class="bold">');
     input = this.handleSpecial('~', input, '<span class="strikethrough">');
     input = this.handleSpecial('`', input, '<span class="code">');
     input = this.handleSpecial('_', input, '<span class="italics">');
     input = this.stripExtraBackSlashes(input);
-    console.log(input);
     return input;
   }
   handleSpecial(character: string, input: string, open: string) {
     var started = false;
+    var inCode = false;
     var index = 0;
     var tempInput = '';
     var close = '</' + open.substring(1, open.indexOf(' ')) + '>';
@@ -48,7 +49,16 @@ class ParsedBound extends Bound {
     }
     for (var i = 0; i < input.length; i++){
       var currentChar = input[i];
-      if (currentChar == character) {
+      if (currentChar == '<' && input[i + 1] == 'c'
+        && input[i + 2] == 'o' && input[i + 3] == 'd' && input[i + 4] == 'e'
+        && input[i + 5] == '>') {
+        inCode = true;
+      } else if (currentChar == '<' && input[i + 1] == '/'
+        && input[i + 2] == 'c' && input[i + 3] == 'o' && input[i + 4] == 'd'
+        && input[i + 5] == 'e' && input[i + 6] == '>') {
+        inCode = false;
+      }
+      if (currentChar == character && !inCode) {
         if (input[i - 1] != '\\') {
           tempInput += input.substring(0, i);
           input = input.substring(i + 1);
@@ -59,7 +69,6 @@ class ParsedBound extends Bound {
             tempInput += close;
           }
           started = !started;
-          console.log(input);
         }
       }
     }
@@ -69,17 +78,17 @@ class ParsedBound extends Bound {
     var started = false;
     var index = 0;
     var tempInput = '';
-    var open = '<table class="code"><tr>';
-    var close = '</tr></table>';
+    var open = '<code><table><tr>';
+    var close = '</tr></table></code>';
     var count = 0;
     var localIndex = 0;
-    while (input.indexOf('```') != -1) {
-      var startIndex = input.indexOf('```');
+    while (input.indexOf('<code>\n') != -1) {
+      var startIndex = input.indexOf('<code>');
       tempInput += input.substring(0, startIndex);
-      input = input.substring(startIndex + 3);
-      var endIndex = input.indexOf('```');
+      input = input.substring(startIndex + 7);
+      var endIndex = input.indexOf('\n</code>');
       var code = input.substring(0, endIndex).split('\n');
-      input = input.substring(endIndex + 3);
+      input = input.substring(endIndex + 8);
       var lines = '';
       for (i = 0; i < code.length; i++) {
         lines += (i + 1) + '<br>';
@@ -89,36 +98,26 @@ class ParsedBound extends Bound {
       tempInput += open;
       tempInput += '<td valign="top">' + lines + '</td><td valign="top">' + rejoinedCode + '</td>'
       tempInput += close;
-      console.log(tempInput)
     }
     return tempInput + input;
   }
-  handleBlock(input: string) {
-
-  }
-  handleBigBlocks(input: string) {
+  handleBlocks(input: string) {
     var started = false;
     var index = 0;
     var tempInput = '';
-    var open = '<div class="block">';
-    var close = '</div>';
+    var open = '<block>';
+    var close = '</block>';
     var count = 0;
-    var localIndex = 0;
-    while (input.indexOf('>>>') != -1) {
-      var startIndex = input.indexOf('>>>');
+    while (input.indexOf('<block>\n') != -1) {
+      var startIndex = input.indexOf('<block>\n');
       tempInput += input.substring(0, startIndex);
-      input = input.substring(startIndex + 3);
-      var endIndex = input.search(/^\s*$/m);
-      if (endIndex !== -1) {
-        var block = input.substring(0, endIndex).split(/[\n\r]/g);
-        input = input.substring(endIndex);
-      } else {
-        var block = input.split('\n');
-        input = '';
-      }
-      var rejoinedBlock = block.join('<br>');
-      tempInput += open + rejoinedBlock + close;
-      console.log(tempInput);
+      input = input.substring(startIndex + 8);
+      var endIndex = input.indexOf('</block>\n');
+      var code = input.substring(0, endIndex);
+      input = input.substring(endIndex + 9);
+      tempInput += open;
+      tempInput += code
+      tempInput += close;
     }
     return tempInput + input;
   }
@@ -131,7 +130,6 @@ class ParsedBound extends Bound {
       var index = input.indexOf('\\');
       tempInput += input.substring(0, index) + (input[index + 1] || '');
       input = input.substring(index + 2);
-      console.log(tempInput);
     }
     return tempInput + input;
   }
