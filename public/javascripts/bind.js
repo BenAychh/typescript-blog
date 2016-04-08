@@ -1,3 +1,8 @@
+var __extends = (this && this.__extends) || function (d, b) {
+    for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p];
+    function __() { this.constructor = d; }
+    d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
+};
 var Bound = (function () {
     function Bound(pId) {
         this.id = pId;
@@ -7,10 +12,9 @@ var Bound = (function () {
         return this.id;
     };
     Bound.prototype.update = function (value) {
-        console.log(this.id);
-        if (this.tagName.toLowerCase() === "input"
-            || this.tagName.toLowerCase() === "textarea"
-            || this.tagName.toLowerCase() === "select") {
+        if (this.tagName.toLowerCase() === 'input'
+            || this.tagName.toLowerCase() === 'textarea'
+            || this.tagName.toLowerCase() === 'select') {
             document.getElementById(this.id).value = value;
         }
         else {
@@ -20,6 +24,117 @@ var Bound = (function () {
     };
     return Bound;
 }());
+var ParsedBound = (function (_super) {
+    __extends(ParsedBound, _super);
+    function ParsedBound() {
+        _super.apply(this, arguments);
+    }
+    ParsedBound.prototype.update = function (value) {
+        document.getElementById(this.getId()).innerHTML = this.parser(value);
+    };
+    ParsedBound.prototype.parser = function (input) {
+        input = this.handleCodeBlocks(input);
+        input = this.handleBigBocks(input);
+        input = this.handleSpecial('*', input, '<span class="bold">');
+        input = this.handleSpecial('~', input, '<span class="strikethrough">');
+        input = this.handleSpecial('`', input, '<span class="code">');
+        input = this.handleSpecial('_', input, '<span class="italics">');
+        input = this.stripExtraBackSlashes(input);
+        console.log(input);
+        return input;
+    };
+    ParsedBound.prototype.handleSpecial = function (character, input, open) {
+        var started = false;
+        var index = 0;
+        var tempInput = '';
+        var close = '</' + open.substring(1, open.indexOf(' ')) + '>';
+        var count = 0;
+        var localIndex = 0;
+        if (input[0] == character) {
+            tempInput += open;
+            started = true;
+            input = input.substring(1);
+        }
+        while (input.search(new RegExp('([^\\\\])\\' + character, 'g')) != -1) {
+            var index = input.search(new RegExp('([^\\\\])\\' + character, 'g'));
+            tempInput += input.substring(0, index + 1);
+            input = input.substring(index + 2);
+            if (!started) {
+                tempInput += open;
+            }
+            else {
+                tempInput += close;
+            }
+            started = !started;
+        }
+        return tempInput + input;
+    };
+    ParsedBound.prototype.handleCodeBlocks = function (input) {
+        var started = false;
+        var index = 0;
+        var tempInput = '';
+        var open = '<table class="code"><tr>';
+        var close = '</tr></table>';
+        var count = 0;
+        var localIndex = 0;
+        while (input.indexOf('```') != -1) {
+            var startIndex = input.indexOf('```');
+            tempInput += input.substring(0, startIndex);
+            input = input.substring(startIndex + 3);
+            var endIndex = input.indexOf('```');
+            var code = input.substring(0, endIndex).split('\n');
+            input = input.substring(endIndex + 3);
+            var lines = '';
+            for (i = 0; i < code.length; i++) {
+                lines += (i + 1) + '<br>';
+            }
+            var rejoinedCode = encodeURI(code.join('<br>')).split(' ').join('&nbsp;');
+            tempInput += open;
+            tempInput += '<td valign="top">' + lines + '</td><td valign="top">' + rejoinedCode + '</td>';
+            tempInput += close;
+        }
+        return tempInput + input;
+    };
+    ParsedBound.prototype.handleBigBocks = function (input) {
+        var started = false;
+        var index = 0;
+        var tempInput = '';
+        var open = '<div class="block">';
+        var close = '</div>';
+        var count = 0;
+        var localIndex = 0;
+        while (input.indexOf('>>>') != -1) {
+            var startIndex = input.indexOf('>>>');
+            tempInput += input.substring(0, startIndex);
+            input = input.substring(startIndex + 3);
+            var endIndex = input.search(/^\s*$/m);
+            if (endIndex !== -1) {
+                var block = input.substring(0, endIndex).split(/[\n\r]/g);
+                input = input.substring(endIndex);
+            }
+            else {
+                var block = input.split('\n');
+                input = '';
+            }
+            var rejoinedBlock = block.join('<br>');
+            tempInput += open + rejoinedBlock + close;
+        }
+        return tempInput + input;
+    };
+    ParsedBound.prototype.stripExtraBackSlashes = function (input) {
+        var started = false;
+        var index = 0;
+        var tempInput = '';
+        var count = 0;
+        while (input.indexOf('\\') != -1 && count <= 10) {
+            var index = input.indexOf('\\');
+            tempInput += input.substring(0, index) + (input[index + 1] || '');
+            input = input.substring(index + 2);
+        }
+        return tempInput + input;
+    };
+    return ParsedBound;
+}(Bound));
 var Binder = (function () {
     function Binder() {
         var _this = this;
@@ -39,7 +154,8 @@ var Binder = (function () {
         }
     };
     Binder.prototype.addListener = function (listener) {
-        document.getElementById(listener.getId()).addEventListener('input', this.changeHandler);
+        document.getElementById(listener.getId())
+            .addEventListener('input', this.changeHandler);
         this.elementListeners.push(listener);
     };
     return Binder;
