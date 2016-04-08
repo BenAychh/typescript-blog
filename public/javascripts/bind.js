@@ -34,7 +34,7 @@ var ParsedBound = (function (_super) {
     };
     ParsedBound.prototype.parser = function (input) {
         input = this.handleCodeBlocks(input);
-        input = this.handleBigBocks(input);
+        input = this.handleBigBlocks(input);
         input = this.handleSpecial('*', input, '<span class="bold">');
         input = this.handleSpecial('~', input, '<span class="strikethrough">');
         input = this.handleSpecial('`', input, '<span class="code">');
@@ -55,17 +55,23 @@ var ParsedBound = (function (_super) {
             started = true;
             input = input.substring(1);
         }
-        while (input.search(new RegExp('([^\\\\])\\' + character, 'g')) != -1) {
-            var index = input.search(new RegExp('([^\\\\])\\' + character, 'g'));
-            tempInput += input.substring(0, index + 1);
-            input = input.substring(index + 2);
-            if (!started) {
-                tempInput += open;
+        for (var i = 0; i < input.length; i++) {
+            var currentChar = input[i];
+            if (currentChar == character) {
+                if (input[i - 1] != '\\') {
+                    tempInput += input.substring(0, i);
+                    input = input.substring(i + 1);
+                    i = -1;
+                    if (!started) {
+                        tempInput += open;
+                    }
+                    else {
+                        tempInput += close;
+                    }
+                    started = !started;
+                    console.log(input);
+                }
             }
-            else {
-                tempInput += close;
-            }
-            started = !started;
         }
         return tempInput + input;
     };
@@ -87,15 +93,19 @@ var ParsedBound = (function (_super) {
             var lines = '';
             for (i = 0; i < code.length; i++) {
                 lines += (i + 1) + '<br>';
+                code[i] = code[i].split(' ').join('&nbsp;').split('<').join('&#60;').split('>').join('&#62;');
             }
-            var rejoinedCode = encodeURI(code.join('<br>')).split(' ').join('&nbsp;');
+            var rejoinedCode = code.join('<br>');
             tempInput += open;
             tempInput += '<td valign="top">' + lines + '</td><td valign="top">' + rejoinedCode + '</td>';
             tempInput += close;
+            console.log(tempInput);
         }
         return tempInput + input;
     };
-    ParsedBound.prototype.handleBigBocks = function (input) {
+    ParsedBound.prototype.handleBlock = function (input) {
+    };
+    ParsedBound.prototype.handleBigBlocks = function (input) {
         var started = false;
         var index = 0;
         var tempInput = '';
@@ -118,6 +128,7 @@ var ParsedBound = (function (_super) {
             }
             var rejoinedBlock = block.join('<br>');
             tempInput += open + rejoinedBlock + close;
+            console.log(tempInput);
         }
         return tempInput + input;
     };
@@ -126,10 +137,11 @@ var ParsedBound = (function (_super) {
         var index = 0;
         var tempInput = '';
         var count = 0;
-        while (input.indexOf('\\') != -1 && count <= 10) {
+        while (input.indexOf('\\') != -1) {
             var index = input.indexOf('\\');
             tempInput += input.substring(0, index) + (input[index + 1] || '');
             input = input.substring(index + 2);
+            console.log(tempInput);
         }
         return tempInput + input;
     };

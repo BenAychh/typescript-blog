@@ -25,7 +25,7 @@ class ParsedBound extends Bound {
   }
   parser(input: string) {
     input = this.handleCodeBlocks(input);
-    input = this.handleBigBocks(input);
+    input = this.handleBigBlocks(input);
     input = this.handleSpecial('*', input, '<span class="bold">');
     input = this.handleSpecial('~', input, '<span class="strikethrough">');
     input = this.handleSpecial('`', input, '<span class="code">');
@@ -46,16 +46,22 @@ class ParsedBound extends Bound {
       started = true;
       input = input.substring(1);
     }
-    while (input.search(new RegExp('([^\\\\])\\' + character, 'g')) != -1) {
-      var index = input.search(new RegExp('([^\\\\])\\' + character, 'g'));
-      tempInput += input.substring(0, index + 1);
-      input = input.substring(index + 2);
-      if (!started) {
-        tempInput += open;
-      } else {
-        tempInput += close;
+    for (var i = 0; i < input.length; i++){
+      var currentChar = input[i];
+      if (currentChar == character) {
+        if (input[i - 1] != '\\') {
+          tempInput += input.substring(0, i);
+          input = input.substring(i + 1);
+          i = -1;
+          if (!started) {
+            tempInput += open;
+          } else {
+            tempInput += close;
+          }
+          started = !started;
+          console.log(input);
+        }
       }
-      started = !started;
     }
     return tempInput + input;
   }
@@ -77,15 +83,20 @@ class ParsedBound extends Bound {
       var lines = '';
       for (i = 0; i < code.length; i++) {
         lines += (i + 1) + '<br>';
+        code[i] = code[i].split(' ').join('&nbsp;').split('<').join('&#60;').split('>').join('&#62;');
       }
-      var rejoinedCode = encodeURI(code.join('<br>')).split(' ').join('&nbsp;');
+      var rejoinedCode = code.join('<br>');
       tempInput += open;
       tempInput += '<td valign="top">' + lines + '</td><td valign="top">' + rejoinedCode + '</td>'
       tempInput += close;
+      console.log(tempInput)
     }
     return tempInput + input;
   }
-  handleBigBocks(input: string) {
+  handleBlock(input: string) {
+
+  }
+  handleBigBlocks(input: string) {
     var started = false;
     var index = 0;
     var tempInput = '';
@@ -107,6 +118,7 @@ class ParsedBound extends Bound {
       }
       var rejoinedBlock = block.join('<br>');
       tempInput += open + rejoinedBlock + close;
+      console.log(tempInput);
     }
     return tempInput + input;
   }
@@ -115,10 +127,11 @@ class ParsedBound extends Bound {
     var index = 0;
     var tempInput = '';
     var count = 0;
-    while (input.indexOf('\\') != -1 && count <= 10) {
+    while (input.indexOf('\\') != -1) {
       var index = input.indexOf('\\');
       tempInput += input.substring(0, index) + (input[index + 1] || '');
       input = input.substring(index + 2);
+      console.log(tempInput);
     }
     return tempInput + input;
   }
