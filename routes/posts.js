@@ -4,6 +4,9 @@ var models = require('../models');
 
 router.get('/', function (req, res, next) {
   models.blogposts.findAll({
+    where: {
+      published: true,
+    },
     limit: req.query.pLimit,
     offset: req.query.pOffset,
     include: [models.authors],
@@ -17,6 +20,7 @@ router.get('/:id', function (req, res, next) {
   models.blogposts.findAll({
     where: {
       id: req.params.id,
+      published: true,
     },
     include: [models.authors],
   })

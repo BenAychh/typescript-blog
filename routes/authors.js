@@ -20,6 +20,9 @@ router.get('/withPosts/', function (req, res, next) {
         model: models.blogposts,
         limit: req.query.pLimit,
         offset: req.query.pOffset,
+        where: {
+          published: true,
+        },
       },
     ],
     limit: req.query.aLimit,
@@ -51,6 +54,9 @@ router.get('/:id/withPosts', function (req, res, next) {
         model: models.blogposts,
         limit: req.query.pLimit,
         offset: req.query.pOffset,
+        where: {
+          published: true,
+        },
       },
     ],
   })

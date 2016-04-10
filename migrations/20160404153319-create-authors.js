@@ -42,6 +42,9 @@ module.exports = {
         blogText: {
           type: Sequelize.TEXT,
         },
+        published: {
+          type: Sequelize.BOOLEAN,
+        },
         createdAt: {
           allowNull: false,
           type: Sequelize.DATE,
@@ -51,26 +54,6 @@ module.exports = {
           type: Sequelize.DATE,
         },
       });
-    })
-    .then(function () {
-      return queryInterface.bulkInsert('authors', [
-        {
-          email: 'ben.tomas.hernandez@gmail.com',
-          displayName: 'BenAychh',
-          createdAt: 'now()',
-          updatedAt: 'now()',
-        },
-      ]);
-    })
-    .then(function () {
-      return queryInterface.bulkInsert('blogposts', [
-        {
-          authorId: 1,
-          blogText: 'This is a test!',
-          createdAt: 'now()',
-          updatedAt: 'now()',
-        },
-      ]);
     });
   },
 

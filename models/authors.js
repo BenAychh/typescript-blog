@@ -5,10 +5,10 @@ module.exports = function(sequelize, DataTypes) {
     displayName: DataTypes.STRING,
   }, {
     classMethods: {
-      associate: function(models) {
+      associate: function (models) {
         authors.hasMany(models.blogposts)
-      }
-    }
+      },
+    },
   });
   return authors;
 };
