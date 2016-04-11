@@ -1,16 +1,18 @@
+require('dotenv').config();
 var express = require('express');
 var passport = require('passport');
 var path = require('path');
 var favicon = require('serve-favicon');
 var logger = require('morgan');
+var session = require('express-session');
 var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
 var GitHubStrategy = require('passport-github2').Strategy;
 
 var routes = require('./routes/index');
 var users = require('./routes/users');
-var authors = require('./routes/authors');
 var posts = require('./routes/posts');
+var auth = require('./routes/auth');
 
 var app = express();
 
@@ -25,10 +27,13 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
-
+app.use(session({ secret: 'keyboard cat', resave: false, saveUninitialized: false }));
+app.use(passport.initialize());
+app.use(passport.session());
 app.use('/', routes);
-app.use('/authors', authors);
+app.use('/users', users);
 app.use('/posts', posts);
+app.use('/auth', auth);
 
 // catch 404 and forward to error handler
 app.use(function (req, res, next) {

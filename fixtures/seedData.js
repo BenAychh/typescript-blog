@@ -2,8 +2,11 @@ module.exports = [
   {
     model: 'authors',
     data: {
-      email: 'ben.tomas.hernandez@gmail.com',
-      displayName: 'BenAychh',
+      githubId: 16299846,
+      profileUrl: 'https://github.com/BenAychh',
+      userName: 'BenAychh',
+      isAuthor: true,
+      isSuper: true,
       createdAt: new Date(),
       updatedAt: new Date(),
     },
@@ -111,80 +114,11 @@ module.exports = [
   {
     model: 'authors',
     data: {
-      email: 'temp@email.com',
-      displayName: 'AssHat',
-      createdAt: new Date(),
-      updatedAt: new Date(),
-    },
-  },
-  {
-    model: 'authors',
-    data: {
-      email: 'temp2@email.com',
-      displayName: 'Dummy',
-      createdAt: new Date(),
-      updatedAt: new Date(),
-    },
-  },
-  {
-    model: 'authors',
-    data: {
-      email: 'temp3@email.com',
-      displayName: 'Idiot',
-      createdAt: new Date(),
-      updatedAt: new Date(),
-    },
-  },
-  {
-    model: 'authors',
-    data: {
-      email: 'temp4@email.com',
-      displayName: 'pre10tious',
-      createdAt: new Date(),
-      updatedAt: new Date(),
-    },
-  },
-  {
-    model: 'authors',
-    data: {
-      email: 'temp5@email.com',
-      displayName: 'piraterrrr',
-      createdAt: new Date(),
-      updatedAt: new Date(),
-    },
-  },
-  {
-    model: 'authors',
-    data: {
-      email: 'temp6@email.com',
-      displayName: 'choppedChampion',
-      createdAt: new Date(),
-      updatedAt: new Date(),
-    },
-  },
-  {
-    model: 'authors',
-    data: {
-      email: 'temp7@email.com',
-      displayName: 'ShoeIn',
-      createdAt: new Date(),
-      updatedAt: new Date(),
-    },
-  },
-  {
-    model: 'authors',
-    data: {
-      email: 'temp8@email.com',
-      displayName: 'Another Author',
-      createdAt: new Date(),
-      updatedAt: new Date(),
-    },
-  },
-  {
-    model: 'authors',
-    data: {
-      email: 'temp9@email.com',
-      displayName: 'The 9th',
+      githubId: 10101010,
+      profileUrl: 'https://github.com/BenAychh',
+      userName: 'AssHat',
+      isAdmin: false,
+      isSuper: false,
       createdAt: new Date(),
       updatedAt: new Date(),
     },

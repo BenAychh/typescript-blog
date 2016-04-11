@@ -1,8 +1,7 @@
 'use strict';
 module.exports = function (sequelize, DataTypes) {
   var users = sequelize.define('users', {
-    githubId: DataTypes.STRING,
-    displayName: DataTypes.STRING,
+    githubId: DataTypes.INTEGER,
     profileUrl: DataTypes.STRING,
     userName: DataTypes.STRING,
     isAuthor: DataTypes.BOOLEAN,
@@ -14,5 +13,5 @@ module.exports = function (sequelize, DataTypes) {
       },
     },
   });
-  return authors;
+  return users;
 };

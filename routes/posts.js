@@ -9,7 +9,7 @@ router.get('/', function (req, res, next) {
     },
     limit: req.query.pLimit,
     offset: req.query.pOffset,
-    include: [models.authors],
+    include: [models.users],
   })
   .then(function (posts) {
     res.json(posts);
@@ -22,7 +22,7 @@ router.get('/:id', function (req, res, next) {
       id: req.params.id,
       published: true,
     },
-    include: [models.authors],
+    include: [models.users],
   })
   .then(function (posts) {
     res.json(posts[0]);

@@ -9,10 +9,7 @@ module.exports = {
         type: Sequelize.INTEGER,
       },
       githubId: {
-        type: Sequelize.STRING,
-      },
-      displayName: {
-        type: Sequelize.STRING,
+        type: Sequelize.INTEGER,
       },
       profileUrl: {
         type: Sequelize.STRING,
@@ -22,9 +19,11 @@ module.exports = {
       },
       isAuthor: {
         type: Sequelize.BOOLEAN,
+        defaultValue: false,
       },
       isSuper: {
         type: Sequelize.BOOLEAN,
+        defaultValue: false,
       },
       createdAt: {
         allowNull: false,

@@ -1,7 +1,7 @@
 var passport = require('passport');
 var GitHubStrategy = require('passport-github2');
 var models = require('../models');
-var Users = models.users();
+var Users = models.users;
 passport.use(new GitHubStrategy({
     clientID: process.env.GITHUB_CLIENT_ID,
     clientSecret: process.env.GITHUB_CLIENT_SECRET,
@@ -14,14 +14,12 @@ passport.use(new GitHubStrategy({
     })
     .then((results) => {
       if (results.length !== 0) {
-        done(null, user[0].id);
+        done(null, results[0].id);
       } else {
-        Users().create({
-          github_id: profile.id,
-          display_name: profile.displayName,
-          profile_url: profile.profileUrl,
-          username: profile.username,
-          user_id: user[0].id,
+        Users.create({
+          githubId: profile.id,
+          profileUrl: profile.profileUrl,
+          userName: profile.username,
         })
         .then((user) => done(null, user.id))
         .catch((err) => console.log('Error: ' + err));
@@ -33,7 +31,7 @@ passport.use(new GitHubStrategy({
 passport.serializeUser((id, done) => done(null, id));
 
 passport.deserializeUser((id, done) => {
-  Users().findAll({
+  Users.findAll({
     where: {
       id: id,
     },
@@ -46,3 +44,5 @@ passport.deserializeUser((id, done) => {
     }
   });
 });
+
+module.exports = passport;

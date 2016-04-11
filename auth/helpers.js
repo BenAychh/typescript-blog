@@ -11,7 +11,7 @@ function ensureAuthenticated(req, res, next) {
 };
 
 function ensureAdmin(req, res, next) {
-  if (req.user.local.is_admin) {
+  if (req.user.isAdmin) {
     next();
   } else {
     req.flash('message', {
