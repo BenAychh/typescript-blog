@@ -25,7 +25,20 @@ router.get('/:id', function (req, res, next) {
     include: [models.authors],
   })
   .then(function (posts) {
-    res.json(posts);
+    res.json(posts[0]);
+  });
+});
+
+router.post('/create', function (req, res, next) {
+  var postInfo = req.body;
+  postInfo.createdAt = new Date();
+  postInfo.updatedAt = new Date();
+  models.blogposts.create(postInfo)
+  .then(function (newPost) {
+    res.send(newPost);
+  })
+  .catch(function (err) {
+    res.send('Error!: ', err);
   });
 });
 

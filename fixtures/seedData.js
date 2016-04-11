@@ -42,10 +42,10 @@ module.exports = [
     model: 'blogposts',
     data: {
       authorId: 1,
-      blogText: 'Plura mihi bona sunt, inclinet, amari petere vellent. Sed haec quis possit intrepidus aestimare tellus. Lorem ipsum dolor sit amet, consectetur adipisici elit, sed eiusmod tempor incidunt ut labore et dolore magna aliqua. Quae vero auctorem tractata ab fiducia dicuntur. Hi omnes lingua, institutis, legibus inter se differunt. Unam incolunt Belgae, aliam Aquitani, tertiam.\r\n Quam temere in vitiis, legem sancimus haerentia. Quis aute iure reprehenderit in voluptate velit esse. Quid securi etiam tamquam eu fugiat nulla pariatur. Nec dubitamus multa iter quae et nos invenerat.\r\n Salutantibus vitae elit libero, a pharetra augue. Ut enim ad minim veniam, quis nostrud exercitation. Me non paenitet nullum festiviorem excogitasse ad hoc. Quisque ut dolor gravida, placerat libero vel, euismod. Qui ipsorum lingua Celtae, nostra Galli appellantur. Ullamco laboris nisi ut aliquid ex ea commodi consequat.\r\n Cras mattis iudicium purus sit amet fermentum. Prima luce, cum quibus mons aliud consensu ab eo. Cum sociis natoque penatibus et magnis dis parturient. Nihilne te nocturnum praesidium Palati, nihil urbis vigiliae. Praeterea iter est quasdam res quas ex communi.\r\n Inmensae subtilitatis, obscuris et malesuada fames. Paullum deliquit, ponderibus modulisque suis ratio utitur. Integer legentibus erat a ante historiarum dapibus. Ab illo tempore, ab est sed immemorabili.',
+      blogText: 'Test post',
       published: true,
-      createdAt: new Date(),
-      updatedAt: new Date(),
+      createdAt: new Date('January 19, 1985 03:18:00'),
+      updatedAt: new Date('March 10, 2016 11:26:00'),
     },
   },
   {
