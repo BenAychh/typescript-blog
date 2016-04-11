@@ -1,18 +1,30 @@
 'use strict';
 module.exports = {
   up: function (queryInterface, Sequelize) {
-    return queryInterface.createTable('authors', {
+    return queryInterface.createTable('users', {
       id: {
         allowNull: false,
         autoIncrement: true,
         primaryKey: true,
         type: Sequelize.INTEGER,
       },
-      email: {
+      githubId: {
         type: Sequelize.STRING,
       },
       displayName: {
         type: Sequelize.STRING,
+      },
+      profileUrl: {
+        type: Sequelize.STRING,
+      },
+      userName: {
+        type: Sequelize.STRING,
+      },
+      isAuthor: {
+        type: Sequelize.BOOLEAN,
+      },
+      isSuper: {
+        type: Sequelize.BOOLEAN,
       },
       createdAt: {
         allowNull: false,
@@ -23,8 +35,7 @@ module.exports = {
         type: Sequelize.DATE,
       },
     })
-    .then(function (result) {
-      console.log('result', result);
+    .then(function () {
       return queryInterface.createTable('blogposts', {
         id: {
           allowNull: false,
@@ -35,7 +46,7 @@ module.exports = {
         authorId: {
           type: Sequelize.INTEGER,
           references: {
-            model: 'authors',
+            model: 'users',
             key: 'id',
           },
         },
