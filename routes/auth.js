@@ -3,9 +3,15 @@ var router = express.Router();
 var passport = require('../auth/auth.js');
 var models = require('../models');
 
-router.get('/', (req, res, next) => {
+router.get('/', passport.authenticate('github'), (req, res, next) => {
   passport.authenticate('github')(req, res, next);
 });
+
+if (process.env.DEVELOPMENT == 'true') {
+  router.get('/test', passport.authenticate('testing'), (req, res, next) => {
+    res.json(req.user);
+  });
+}
 
 router.get('/callback/',
   passport.authenticate('github', { failureRedirect: '/' }),

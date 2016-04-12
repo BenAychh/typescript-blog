@@ -1,16 +1,15 @@
 var server = require('../app');
+var request = require('supertest')(server);
 var expect = require('expect.js');
-var chai = require('chai');
-var chaiHttp = require('chai-http');
-var should = chai.should();
+var should = require('should');
+var superagent = require('superagent');
+var agent = superagent.agent();
 var models = require('../models');
 var sequelize = models.sequelize;
 var Sequelize = models.Sequelize;
 var fixture = require('sequelize-fixtures');
 
-chai.use(chaiHttp);
-
-describe('API', function () {
+describe('Without authentication', function () {
   beforeEach((done) => {
     sequelize.sync({ force: true })
     .then(() => fixture.loadFile('fixtures/seedData.js', models))
@@ -19,62 +18,114 @@ describe('API', function () {
   });
 
   it('should get all blogs', (done) => {
-    chai.request(server)
+    request
     .get('/posts')
-    .end((err, data) => {
-      data.should.have.status(200);
-      data.should.be.json;
-      data.body.should.be.a('array');
-      data.body.length.should.equal(6);
-      data.body[2].id.should.equal(4);
-      data.body[2].authorId.should.equal(1);
-      data.body[2].blogText.should.equal('Test post');
-      data.body[2].published.should.equal(true);
-      data.body[2].createdAt.should.equal('1985-01-19T10:18:00.000Z');
-      data.body[2].author.id.should.equal(1);
-      data.body[2].author.displayName.should.equal('BenAychh');
+    .set('Accept', 'application/json')
+    .expect('Content-Type', /json/)
+    .expect(200)
+    .end((err, res) => {
+      res.error.should.equal(false);
+      res.body.should.be.an.instanceOf(Array);
+      res.body.length.should.equal(6);
+      res.body[2].id.should.equal(4);
+      res.body[2].userId.should.equal(1);
+      res.body[2].blogText.should.equal('Test post');
+      res.body[2].published.should.equal(true);
+      res.body[2].createdAt.should.equal('1985-01-19T10:18:00.000Z');
+      res.body[2].user.id.should.equal(1);
+      res.body[2].user.userName.should.equal('BenAychh');
       done();
     });
   });
 
   it('should get a single blog', (done) => {
-    chai.request(server)
+    request
     .get('/posts/4')
-    .end((err, data) => {
-      data.should.have.status(200);
-      data.should.be.json;
-      data.body.should.be.a('object');
-      data.body.id.should.equal(4);
-      data.body.authorId.should.equal(1);
-      data.body.blogText.should.equal('Test post');
-      data.body.published.should.equal(true);
-      data.body.createdAt.should.equal('1985-01-19T10:18:00.000Z');
-      data.body.author.id.should.equal(1);
-      data.body.author.displayName.should.equal('BenAychh');
+    .set('Accept', 'application/json')
+    .expect('Content-Type', /json/)
+    .expect(200)
+    .end((err, res) => {
+      res.error.should.equal(false);
+      res.body.should.be.an.instanceOf(Object);
+      res.body.id.should.equal(4);
+      res.body.userId.should.equal(1);
+      res.body.blogText.should.equal('Test post');
+      res.body.published.should.equal(true);
+      res.body.createdAt.should.equal('1985-01-19T10:18:00.000Z');
+      res.body.user.id.should.equal(1);
+      res.body.user.userName.should.equal('BenAychh');
       done();
     });
   });
 
-  it('should post a blog', (done) => {
-    chai.request(server)
+  it('should not even be able to get to the create blog page', (done) => {
+    request
+    .get('/posts/create')
+    .expect(302)
+    .end(done());
+  });
+
+  it('should not be able to post a blog', (done) => {
+    request
     .post('/posts/create')
     .send({
-      authorId: 1,
       blogText: 'This is a posting test',
       published: true,
     })
-    .end((err, data) => {
-      chai.request(server)
-      .get('/posts/' + data.body.id)
-      .end((err, moreData) => {
-        moreData.body.should.be.a('object');
-        moreData.body.id.should.equal(data.body.id);
-        moreData.body.authorId.should.equal(1);
-        moreData.body.blogText.should.equal('This is a posting test');
-        moreData.body.published.should.equal(true);
-        moreData.body.createdAt.should.equal(data.body.createdAt);
-        moreData.body.author.id.should.equal(1);
-        moreData.body.author.displayName.should.equal('BenAychh');
+    .expect(302)
+    .end(done());
+  });
+});
+
+describe('With authentication', function () {
+  before((done) => {
+    request
+    .get('/auth/test')
+    .end((err, res) => {
+      agent.saveCookies(res);
+      done();
+    });
+  });
+
+  beforeEach((done) => {
+    sequelize.sync({ force: true })
+    .then(() => fixture.loadFile('fixtures/seedData.js', models))
+    .then(() => done())
+    .catch((err) => console.log('error!', err));
+  });
+
+  it('Should be able to get to the new blog page', (done) => {
+    var req = request.get('/posts/create');
+    agent.attachCookies(req);
+    req.expect(200)
+    .end((err, res) => {
+      console.log(res.body);
+      done();
+    });
+  });
+
+  it('Should be able to post a blog', (done) => {
+    var req = request.post('/posts/create')
+    agent.attachCookies(req);
+    req.send({
+      blogText: 'This is a posting test',
+      published: true,
+    })
+    .expect(200)
+    .end((err, entry) => {
+      request
+      .get('/posts/' + entry.body.id)
+      .expect(200)
+      .end((error, res) => {
+        res.error.should.equal(false);
+        res.body.should.be.an.instanceOf(Object);
+        res.body.id.should.equal(entry.body.id);
+        res.body.userId.should.equal(1);
+        res.body.blogText.should.equal('This is a posting test');
+        res.body.published.should.equal(true);
+        res.body.createdAt.should.equal(entry.body.createdAt);
+        res.body.user.id.should.equal(1);
+        res.body.user.userName.should.equal('BenAychh');
         done();
       });
     });

@@ -10,8 +10,8 @@ function ensureAuthenticated(req, res, next) {
   }
 };
 
-function ensureAdmin(req, res, next) {
-  if (req.user.isAdmin) {
+function ensureAuthor(req, res, next) {
+  if (req.user && req.user.isAuthor) {
     next();
   } else {
     req.flash('message', {
@@ -47,6 +47,6 @@ function loginRedirect(req, res, next) {
 
 module.exports = {
   ensureAuthenticated,
-  ensureAdmin,
+  ensureAuthor,
   loginRedirect,
 };

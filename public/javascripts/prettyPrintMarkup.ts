@@ -63,7 +63,7 @@ class prettyPrintMarkup {
       tempInput += input.substring(0, startIndex);
       input = input.substring(startIndex + 7);
       let endIndex = input.indexOf('\n</code>');
-      let code = input.substring(0, endIndex).split('\n');
+      let code = input.substring(0, endIndex).split(/(?:\r\n|\r|\n)/g);
       input = input.substring(endIndex + 8);
       let lines = '';
       for (let i = 0; i < code.length; i++) {

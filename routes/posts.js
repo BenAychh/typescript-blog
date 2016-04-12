@@ -1,6 +1,7 @@
 var express = require('express');
 var router = express.Router();
 var models = require('../models');
+var helpers = require('../auth/helpers.js');
 
 router.get('/', function (req, res, next) {
   models.blogposts.findAll({
@@ -16,6 +17,14 @@ router.get('/', function (req, res, next) {
   });
 });
 
+router.get('/create', function (req, res, next) {
+  res.render('index', { title: 'Express' });
+});
+
+router.get('/show', (req, res, next) => {
+  res.render('blogs');
+});
+
 router.get('/:id', function (req, res, next) {
   models.blogposts.findAll({
     where: {
@@ -29,10 +38,11 @@ router.get('/:id', function (req, res, next) {
   });
 });
 
-router.post('/create', function (req, res, next) {
+router.post('/create', helpers.ensureAuthor, function (req, res, next) {
   var postInfo = req.body;
   postInfo.createdAt = new Date();
   postInfo.updatedAt = new Date();
+  postInfo.userId = req.user.id;
   models.blogposts.create(postInfo)
   .then(function (newPost) {
     res.send(newPost);

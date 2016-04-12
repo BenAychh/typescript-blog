@@ -1,5 +1,16 @@
 extends layout
 
 block content
-  textarea(cols=100 rows=12, id='inputText')
+  form(method="POST")
+    textarea.form-control(rows=20, id='inputText' name='blogText')
+    br
+    .pull-right
+      label(for="published") Publish:
+      select(name='published')
+        option(value="true") True
+        option(value="false") False
+      input(type="submit")
   div(id='inputResult')
+  script(src="/javascripts/prettyPrintMarkup.js")
+  script(src="/javascripts/bind.js")
+  script(src="/javascripts/master.js")
