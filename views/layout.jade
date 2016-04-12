@@ -1,8 +1,33 @@
-doctype html
+<!DOCTYPE html>
 html
   head
-    title= title
-    link(rel="stylesheet", href="/stylesheets/style.css")
-    link(href="https://fonts.googleapis.com/css?family=Inconsolata" rel="stylesheet" type="text/css")
+  meta(charset="utf-8")
+  title Contact - Ben Hernandez
+  link(rel="icon" type="image/png" href="/img/favicon.png")
+  meta(name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no")
+  link(rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous")
+  link(href="/stylesheets/style.css" rel="stylesheet" media="screen")
   body
-    block content
+    .container(id="container")
+      .row.top
+        .col-lg-8.col-md-8.col-sm-7.col-left
+          .name
+            a(href="index.html") Ben Hernandez
+        .col-lg-4.col-md-4.col-sm-5.col-right
+          nav
+            ul.list-inline(id="menu")
+              li
+                a(href="index.html") work
+              li.active
+                a(href="blog.html") blog
+              li
+                a(href="contact.html") contact
+              li.last
+                a(href="#")
+                  img(class="social" src="/img/icon/icon-facebook.png" alt="facebook")
+                a(href="#")
+                  img(class="social" src="/img/icon/icon-twitter.png" alt="twitter")
+      block content
+    script(src="/javascripts/plugins/fastclick/fastclick.js")
+    script(src="/javascripts/plugins/smooth-scroll/jquery.smooth-scroll.min.js")
+    script(src="/javascripts/plugins/mixitup/jquery.mixitup.min.js")

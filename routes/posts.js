@@ -8,6 +8,7 @@ router.get('/', function (req, res, next) {
     where: {
       published: true,
     },
+    order: [['updatedAt', 'DESC']],
     limit: req.query.pLimit,
     offset: req.query.pOffset,
     include: [models.users],
@@ -22,7 +23,11 @@ router.get('/create', function (req, res, next) {
 });
 
 router.get('/show', (req, res, next) => {
-  res.render('blogs');
+  res.render('blogs', { id: 0 });
+});
+
+router.get('/show/:id', (req, res, next) => {
+  res.render('blogs', { id: req.params.id });
 });
 
 router.get('/:id', function (req, res, next) {
@@ -34,7 +39,7 @@ router.get('/:id', function (req, res, next) {
     include: [models.users],
   })
   .then(function (posts) {
-    res.json(posts[0]);
+    res.json(posts);
   });
 });
 

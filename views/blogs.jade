@@ -1,7 +1,105 @@
 extends layout
 
 block content
-  div(id="posts")
+  .row.bottom
+    .col-lg-8.col-md-8.col-sm-7.col-left
+      div
+        section
+          // article title
+          h1 A Title
+          h1.spacer ___
+          div(id="posts")
+          ul.pager
+            li.previous
+              a(href='#') < Prev
+            li.next.disabled
+              a(href='#') Next >
+          hr
+          // share
+          .row
+            .col-lg-4.col-md-4.col-sm-4.col-xs-4
+              h3.share Share
+            .col-lg-8.col-md-8.col-sm-8.col-xs-8.text-right
+              a(href='#')
+                img.social(src='/img/icon/icon-mail.png', alt='Mail')
+              a(href='#')
+                img.social(src='/img/icon/icon-facebook.png', alt='Facebook')
+              a(href='#')
+                img.social(src='/img/icon/icon-twitter.png', alt='Twitter')
+              a(href='#')
+                img.social(src='/img/icon/icon-google.png', alt='Google plus')
+    .col-lg-4.col-md-4.col-sm-5.col-right
+      #scroll-shadow
+      h1#posts-list.visible-xs.section-header Last articles
+      h1.visible-xs.text-center.spacer ___
+      section.blog
+        // article
+        .media
+          a.pull-left(href='#')
+            // article image
+            img.media-object(src='img/blog/article-min-1.png', alt='miniature-article')
+          .media-body
+            // article title
+            h4.media-heading
+              | 10 Podcasts About Web Design
+              span.label.label-default New
+            // article category
+            p.article-category Graphic design
+            // article date
+            p.article-date 09 sep 2013
+            // article short description
+            p.article-description
+              | Comitem generum supergressa idem reginae flagrans formula fines fines pretioso occideretur cuiusdam eius...view more
+        .media
+          a.pull-left(href='#')
+            img.media-object(src='img/blog/article-min-7.png', alt='miniature-article')
+          .media-body
+            h4.media-heading Who Uses Graphic Designs
+            p.article-category Graphic design
+            p.article-date 05 sep 2013
+            p.article-description
+              | Comitem generum supergressa idem reginae flagrans formula fines fines pretioso occideretur cuiusdam eius nefanda monili iam autem nullo Clematius
+        .media
+          a.pull-left(href='#')
+            img.media-object(src='img/blog/article-min-3.png', alt='miniature-article')
+          .media-body
+            h4.media-heading How Responsive is awesome
+            p.article-category Web design
+            p.article-date 02 sep 2013
+            p.article-description
+              | Comitem generum supergressa idem reginae flagrans formula fines fines pretioso occideretur cuiusdam eius nefanda monili iam autem nullo Clematius
+        .media
+          a.pull-left(href='#')
+            img.media-object(src='img/blog/article-min-4.png', alt='miniature-article')
+          .media-body
+            h4.media-heading The Complete Guide to Websites
+            p.article-category Web design
+            p.article-date 30 aug 2013
+            p.article-description
+              | Comitem generum supergressa idem reginae flagrans formula fines fines pretioso occideretur cuiusdam eius nefanda monili iam autem nullo Clematius
+        .media
+          a.pull-left(href='#')
+            img.media-object(src='img/blog/article-min-2.png', alt='miniature-article')
+          .media-body
+            h4.media-heading 5 Ideas for your Logotypes
+            p.article-category Logotype
+            p.article-date 23 aug 2013
+            p.article-description
+              | Comitem generum supergressa idem reginae flagrans formula fines fines pretioso occideretur cuiusdam eius nefanda monili iam autem nullo Clematius
+        .media
+          a.pull-left(href='#')
+            img.media-object(src='img/blog/article-min-6.png', alt='miniature-article')
+          .media-body
+            h4.media-heading The Only Responsive Resources
+            p.article-category Web design
+            p.article-date 10 aug 2013
+            p.article-description
+              | Comitem generum supergressa idem reginae flagrans formula fines fines pretioso occideretur cuiusdam eius nefanda monili iam autem nullo Clematius
+      a.btn.btn-default.btn-lg.btn-block.load-more Load more
+      a.btn.btn-block.scroll-top.visible-xs
+        img(src='img/icon/icon-chevron.png', alt='Scroll top')
+
+  script var id = #{id};
   script(src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.0/jquery.min.js")
   script(src="/javascripts/prettyPrintMarkup.js")
   script(src="/javascripts/displayPosts.js")

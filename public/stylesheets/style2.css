@@ -1,0 +1,83 @@
+body {
+  padding: 5%;
+  font: 16px "Lucida Grande", Helvetica, Arial, sans-serif;
+}
+nav {
+  height: 50px;
+  width: 100%;
+  background: rgb(0, 176, 28);
+  position: relative;
+}
+.search {
+  float: right;
+  position: relative;
+  width: 20%;
+}
+nav .search input {
+  font-size: 37px;
+  width: 100%;
+  background-color: rgb(166, 255, 128);
+}
+a {
+  color: #00B7FF;
+}
+form {
+  width: 49%;
+  float: left;
+}
+form textarea {
+  font: 16px "Lucida Grande", Helvetica, Arial, sans-serif;
+  width: 100%;
+}
+form input[type=submit] {
+  font: 18px "Lucida Grande", Helvetica, Arial, sans-serif;
+  background: rgb(4, 162, 39);
+  border: 1px solid black;
+  width: 80px;
+  height: 30px;
+  margin-left: 20px;
+}
+.pull-right {
+  float: right;
+  margin-top: 10px;
+}
+#inputResult {
+  width: 49%;
+  float: right;
+}
+code {
+  font-family: 'Inconsolata';
+  background: rgb(231, 252, 231);
+}
+code table {
+  margin-top: 1rem;
+  margin-bottom: 1rem;
+  background: rgb(231, 252, 231);
+}
+code td:first-child{
+  border-right: 2px solid rgb(119, 250, 119);
+  width: 30px;
+}
+.code {
+  font-family: 'Inconsolata';
+  background: rgb(231, 252, 231);
+}
+block {
+  border-left: 5px solid rgb(199, 199, 199);
+  padding-left: 5px;
+  display: block;
+}
+.bold {
+  font-weight: bolder;
+}
+.italics {
+  font-style: italic;
+}
+.strikethrough {
+  text-decoration: line-through;
+}
+.block {
+  border-left: 5px solid rgb(199, 199, 199);
+  padding-left: 5px;
+  display: block;
+}
