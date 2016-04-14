@@ -6,19 +6,21 @@ function ensureAuthenticated(req, res, next) {
       status: 'warning',
       text: 'Please login before accessing that page.',
     });
-    res.redirect('/auth/');
+    res.redirect('/auth/test/');
   }
 };
 
 function ensureAuthor(req, res, next) {
+  console.log(req.user);
   if (req.user && req.user.isAuthor) {
     next();
   } else {
+    console.log('Not Author');
     req.flash('message', {
       status: 'warning',
       text: 'Please login with an admin account',
     });
-    res.redirect('/auth/');
+    res.redirect('/');
   }
 };
 

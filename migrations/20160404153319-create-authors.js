@@ -42,12 +42,18 @@ module.exports = {
           primaryKey: true,
           type: Sequelize.INTEGER,
         },
-        authorId: {
+        userId: {
           type: Sequelize.INTEGER,
           references: {
             model: 'users',
             key: 'id',
           },
+        },
+        title: {
+          type: Sequelize.STRING,
+        },
+        description: {
+          type: Sequelize.STRING,
         },
         blogText: {
           type: Sequelize.TEXT,
