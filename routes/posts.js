@@ -18,7 +18,7 @@ router.get('/', function (req, res, next) {
   });
 });
 
-router.get('/create', function (req, res, next) {
+router.get('/create', helpers.ensureAuthor, function (req, res, next) {
   res.render('index', { title: 'Express' });
 });
 

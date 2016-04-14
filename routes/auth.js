@@ -3,7 +3,7 @@ var router = express.Router();
 var passport = require('../auth/auth.js');
 var models = require('../models');
 
-router.get('/', passport.authenticate('github'), (req, res, next) => {
+router.get('/', (req, res, next) => {
   passport.authenticate('github')(req, res, next);
 });
 
@@ -15,7 +15,7 @@ if (process.env.DEVELOPMENT == 'true') {
 
 router.get('/callback/',
   passport.authenticate('github', { failureRedirect: '/' }),
-  (req, res, next) => res.send('logged in')
+  (req, res, next) => res.send(req.user)
 );
 
 router.get('/logout', (req, res, next) => {
