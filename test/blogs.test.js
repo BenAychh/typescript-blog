@@ -105,9 +105,11 @@ describe('With authentication', function () {
   });
 
   it('Should be able to post a blog', (done) => {
-    var req = request.post('/posts/create')
+    var req = request.post('/posts/create');
     agent.attachCookies(req);
     req.send({
+      title: 'Created by a test',
+      description: 'This was a description created by a test',
       blogText: 'This is a posting test',
       published: true,
     })

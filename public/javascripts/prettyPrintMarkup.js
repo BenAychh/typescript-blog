@@ -1,5 +1,7 @@
-class prettyPrintMarkup {
-    parser(input) {
+var prettyPrintMarkup = (function () {
+    function prettyPrintMarkup() {
+    }
+    prettyPrintMarkup.prototype.parser = function (input) {
         input = this.handleCodeBlocks(input);
         input = this.handleBlocks(input);
         input = input.split('\n').join('<br>');
@@ -9,22 +11,22 @@ class prettyPrintMarkup {
         input = this.handleSpecial('_', input, '<span class="italics">');
         input = this.stripExtraBackSlashes(input);
         return input;
-    }
-    handleSpecial(character, input, open) {
-        let started = false;
-        let inCode = false;
-        let index = 0;
-        let tempInput = '';
-        let close = '</' + open.substring(1, open.indexOf(' ')) + '>';
-        let count = 0;
-        let localIndex = 0;
+    };
+    prettyPrintMarkup.prototype.handleSpecial = function (character, input, open) {
+        var started = false;
+        var inCode = false;
+        var index = 0;
+        var tempInput = '';
+        var close = '</' + open.substring(1, open.indexOf(' ')) + '>';
+        var count = 0;
+        var localIndex = 0;
         if (input[0] == character) {
             tempInput += open;
             started = true;
             input = input.substring(1);
         }
-        for (let i = 0; i < input.length; i++) {
-            let currentChar = input[i];
+        for (var i = 0; i < input.length; i++) {
+            var currentChar = input[i];
             if (currentChar == '<' && input[i + 1] == 'c'
                 && input[i + 2] == 'o' && input[i + 3] == 'd' && input[i + 4] == 'e'
                 && input[i + 5] == '>') {
@@ -51,64 +53,65 @@ class prettyPrintMarkup {
             }
         }
         return tempInput + input;
-    }
-    handleCodeBlocks(input) {
-        let started = false;
-        let index = 0;
-        let tempInput = '';
-        let open = '<code><table><tr>';
-        let close = '</tr></table></code>';
-        let count = 0;
-        let localIndex = 0;
-        while (input.indexOf('<code>\n') != -1) {
-            let startIndex = input.indexOf('<code>');
+    };
+    prettyPrintMarkup.prototype.handleCodeBlocks = function (input) {
+        var started = false;
+        var index = 0;
+        var tempInput = '';
+        var open = '<icode><table><tr>';
+        var close = '</tr></table></icode>';
+        var count = 0;
+        var localIndex = 0;
+        while (input.indexOf('<icode>\n') != -1) {
+            var startIndex = input.indexOf('<icode>');
             tempInput += input.substring(0, startIndex);
-            input = input.substring(startIndex + 7);
-            let endIndex = input.indexOf('\n</code>');
-            let code = input.substring(0, endIndex).split(/(?:\r\n|\r|\n)/g);
-            input = input.substring(endIndex + 8);
-            let lines = '';
-            for (let i = 0; i < code.length; i++) {
+            input = input.substring(startIndex + 8);
+            var endIndex = input.indexOf('\n</icode>');
+            var code = input.substring(0, endIndex).split(/(?:\r\n|\r|\n)/g);
+            input = input.substring(endIndex + 9);
+            var lines = '';
+            for (var i = 0; i < code.length; i++) {
                 lines += (i + 1) + '<br>';
                 code[i] = code[i].split(' ').join('&nbsp;').split('<').join('&#60;').split('>').join('&#62;');
             }
-            let rejoinedCode = code.join('<br>');
+            var rejoinedCode = code.join('<br>');
             tempInput += open;
             tempInput += '<td valign="top">' + lines + '</td><td valign="top">' + rejoinedCode + '</td>';
             tempInput += close;
         }
         return tempInput + input;
-    }
-    handleBlocks(input) {
-        let started = false;
-        let index = 0;
-        let tempInput = '';
-        let open = '<block>';
-        let close = '</block>';
-        let count = 0;
+    };
+    prettyPrintMarkup.prototype.handleBlocks = function (input) {
+        var started = false;
+        var index = 0;
+        var tempInput = '';
+        var open = '<block>';
+        var close = '</block>';
+        var count = 0;
         while (input.indexOf('<block>\n') != -1) {
-            let startIndex = input.indexOf('<block>\n');
+            var startIndex = input.indexOf('<block>\n');
             tempInput += input.substring(0, startIndex);
             input = input.substring(startIndex + 8);
-            let endIndex = input.indexOf('</block>\n');
-            let code = input.substring(0, endIndex);
+            var endIndex = input.indexOf('</block>\n');
+            var code = input.substring(0, endIndex);
             input = input.substring(endIndex + 9);
             tempInput += open;
             tempInput += code;
             tempInput += close;
         }
         return tempInput + input;
-    }
-    stripExtraBackSlashes(input) {
-        let started = false;
-        let index = 0;
-        let tempInput = '';
-        let count = 0;
+    };
+    prettyPrintMarkup.prototype.stripExtraBackSlashes = function (input) {
+        var started = false;
+        var index = 0;
+        var tempInput = '';
+        var count = 0;
         while (input.indexOf('\\') != -1) {
-            let index = input.indexOf('\\');
-            tempInput += input.substring(0, index) + (input[index + 1] || '');
-            input = input.substring(index + 2);
+            var index_1 = input.indexOf('\\');
+            tempInput += input.substring(0, index_1) + (input[index_1 + 1] || '');
+            input = input.substring(index_1 + 2);
         }
         return tempInput + input;
-    }
-}
+    };
+    return prettyPrintMarkup;
+}());

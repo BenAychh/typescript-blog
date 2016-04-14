@@ -29,23 +29,23 @@ ul.pager {
 }
 input:focus {
   outline: none;
-  border: none !important;
-  box-shadow: none !important;
+  /*border: none !important;*/
+  /*box-shadow: none !important;*/
 }
 textarea {
   resize: none;
 }
 textarea:focus {
   outline: none;
-  border: none !important;
-  box-shadow: none !important;
+  /*border: none !important;*/
+  /*box-shadow: none !important;*/
 }
 .form-control {
-  border: none;
-  border-radius: 0;
-  box-shadow: none;
-  -webkit-transition: none;
-  transition: none;
+  /*border: none;*/
+  /*border-radius: 0;*/
+  /*box-shadow: none;*/
+  /*-webkit-transition: none;*/
+  /*transition: none;*/
 }
 .btn-grey {
   background: #e6e6e6;
@@ -555,3 +555,33 @@ body,
     z-index: 4;
   }
 }
+icode {
+  font-family: 'Inconsolata';
+  background: rgb(231, 252, 231);
+}
+icode table {
+  margin-top: 1rem;
+  margin-bottom: 1rem;
+  background: rgb(231, 252, 231);
+  width: 100%;
+}
+icode td:last-child {
+  width: 95%;
+  padding-left: 3px;
+}
+icode td:first-child{
+  border-right: 2px solid rgb(119, 250, 119);
+  width: 5%;
+}
+#posts {
+  font-size: 18px;
+}
+.border {
+  border: 1px solid black;
+  box-sizing: border-box;
+}
+/*textarea:focus, input:focus, input[type]:focus, .uneditable-input:focus {
+    border-color: rgba(229, 103, 23, 0.8);
+    box-shadow: 0 1px 1px rgba(229, 103, 23, 0.075) inset, 0 0 8px rgba(229, 103, 23, 0.6);
+    outline: 0 none;
+}*/
