@@ -8,4 +8,23 @@ router.get('/', function (req, res, next) {
   console.log(req.user);
 });
 
+router.get('/blog/:pId?', (req, res, next) => {
+  if (req.params.pId) {
+    res.render('blogs', {
+      blogActive: 'active',
+      id: req.params.id,
+    });
+  } else {
+    models.blogposts.findOne({
+      order: [['id', 'DESC']],
+    })
+    .then(result => {
+      res.render('blogs', {
+        blogActive: 'active',
+        id: result.id,
+      });
+    });
+  }
+});
+
 module.exports = router;

@@ -49,29 +49,60 @@ router.get('/signS3', (req, res) => {
   });
 });
 
-router.get('/create', helpers.ensureAuthor, function (req, res, next) {
-  res.render('createblog', { title: 'Express' });
-});
-
-router.get('/show', (req, res, next) => {
-  res.render('blogs', { id: 0 });
-});
-
-router.get('/show/:id', (req, res, next) => {
-  res.render('blogs', { id: req.params.id });
-});
-
 router.get('/:id', function (req, res, next) {
-  models.blogposts.findAll({
+  var promises = [];
+  promises.push(models.blogposts.find({
     where: {
       id: req.params.id,
       published: true,
     },
     include: [models.users],
+  }));
+  promises.push(models.blogposts.find({
+    attributes: ['id'],
+    where: {
+      id: {
+        $lt: req.params.id,
+      },
+      published: true,
+    },
+    order: [['id', 'DESC']],
+  }));
+  promises.push(models.blogposts.find({
+    attributes: ['id'],
+    where: {
+      id: {
+        $gt: req.params.id,
+      },
+      published: true,
+    },
+    order: [['id', 'ASC']],
+  }));
+  Promise.all(promises)
+  .then(results => {
+    if (results[0]) {
+      var object = JSON.parse(JSON.stringify(results[0]));
+
+      if (results[1]) {
+        object.previous = results[1].dataValues.id;
+      }
+
+      if (results[2]) {
+        object.next = results[2].dataValues.id;
+      }
+
+      res.json(object);
+    } else {
+      res.send('Invalid post id');
+    }
   })
-  .then(function (posts) {
-    res.json(posts);
+  .catch(err => {
+    res.send('Error! ' + err);
   });
+});
+
+router.get('/create', helpers.ensureAuthor, function (req, res, next) {
+  res.render('createblog', { title: 'Express' });
 });
 
 router.post('/create', helpers.ensureAuthor, function (req, res, next) {

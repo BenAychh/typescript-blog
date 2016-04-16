@@ -5,21 +5,15 @@ let ppm = new prettyPrintMarkup();
 
 class DisplayPosts {
   private displayDiv: HTMLDivElement;
-  private posts: Array<Post> = [];
+  private post: JSON;
   constructor(pDisplayDiv:HTMLDivElement) {
     this.displayDiv = pDisplayDiv;
   }
   public getPosts() {
-    let url = "http://localhost:3000/posts";
-    if (id !== 0) {
-      url += '/' + id;
-    }
-    console.log(url);
+    let url = "/posts/" + id;
     $.getJSON(url)
-    .done( remotePosts => {
-      remotePosts.forEach(post => {
-        this.posts.push(new Post(post));
-      });
+    .done( remotePost => {
+      this.post = remotePost
       this.refreshPage();
     })
     .fail( error => {
@@ -28,9 +22,12 @@ class DisplayPosts {
     })
   }
   private refreshPage() {
-    this.posts.forEach((post) => {
-      this.displayDiv.appendChild(post.getSection());
-    });
+    let firstChild: Node = this.displayDiv.firstChild;
+    while(firstChild) {
+      this.displayDiv.removeChild(firstChild);
+      firstChild = this.displayDiv.firstChild;
+    }
+    this.displayDiv.appendChild(new Post(this.post).getSection());
   }
 }
 class Post {
@@ -57,10 +54,16 @@ class Post {
     pager.className = 'pager';
     let previous = document.createElement('li');
     previous.className = 'previous';
-    previous.innerHTML = '<a href="#">< Prev</a>';
+    previous.onclick = () => {
+      updatePost(postInfo.previous);
+    }
+    previous.innerHTML = '< Prev';
     let next = document.createElement('li');
-    next.innerHTML = '<a href="#">Next ></a>';
     next.className = 'next';
+    next.onclick = () => {
+      updatePost(postInfo.next);
+    }
+    next.innerHTML = 'Next >';
     pager.appendChild(previous);
     pager.appendChild(next)
     this.section.appendChild(pager);
@@ -86,6 +89,11 @@ class Post {
   public getSection(): HTMLElement {
     return this.section;
   }
+}
+
+function updatePost(newId: number) {
+  id = newId;
+  display.getPosts();
 }
 
 let display = new DisplayPosts(<HTMLDivElement>document.getElementById('posts'));
