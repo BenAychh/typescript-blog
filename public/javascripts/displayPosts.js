@@ -10,11 +10,16 @@ class DisplayPosts {
             url += '/' + id;
         }
         console.log(url);
-        $.getJSON(url, remotePosts => {
+        $.getJSON(url)
+            .done(remotePosts => {
             remotePosts.forEach(post => {
                 this.posts.push(new Post(post));
             });
             this.refreshPage();
+        })
+            .fail(error => {
+            alert('Having trouble loading posts');
+            console.log(error);
         });
     }
     refreshPage() {
@@ -36,6 +41,10 @@ class Post {
         let author = document.createElement('h4');
         author.innerHTML = 'Author: ' + postInfo.user.userName;
         this.section.appendChild(author);
+        let date = document.createElement('h4');
+        date.innerHTML = 'Created: ' + new Date(postInfo.createdAt) + '<br>'
+            + 'Updated: ' + new Date(postInfo.updatedAt);
+        this.section.appendChild(date);
         let bodyP = document.createElement('p');
         bodyP.innerHTML = ppm.parser(postInfo.blogText.split('\r').join(''));
         this.section.appendChild(bodyP);
