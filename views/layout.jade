@@ -18,11 +18,11 @@ html
         .col-lg-4.col-md-4.col-sm-5.col-right
           nav
             ul.list-inline(id="menu")
-              li
+              li(class=typeof page === "index" ? active : undefined)
                 a(href="index.html") work
-              li.active
+              li(class=typeof page === "blog" ? active : undefined)
                 a(href="blog.html") blog
-              li
+              li(class=typeof page === "contact" ? active : undefined)
                 a(href="contact.html") contact
               li.last
                 a(href="#")

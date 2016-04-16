@@ -3,25 +3,9 @@ extends layout
 block content
   .row.bottom
     .col-lg-8.col-md-8.col-sm-7.col-left
-      div
-        section
-          form(method="POST")
-            .form-group
-              label.form-control(for="published") Publish:
-              select.form-control(name='published')
-                option(value="true") True
-                option(value="false") False
-            .form-group
-              label.form-control(for="title") Title
-              input.form-control(type="text", name="title")
-            .form-group
-              label(for="blogText") Text
-              textarea.form-control(rows=20, id='inputText' name='blogText')
-            br
-            form-group.pull-right
-              input.form-control.btn.btn-grey(type="submit")
-        section
-          div(id='inputResult')
-  script(src="/javascripts/prettyPrintMarkup.js")
-  script(src="/javascripts/bind.js")
-  script(src="/javascripts/master.js")
+
+    .col-lg-4.col-md-4.col-sm-5.col-right
+      section.blog(id='snippets')
+      a.btn.btn-default.btn-lg.btn-block.load-more Load more
+      a.btn.btn-block.scroll-top.visible-xs
+        img(src='/img/icon/icon-chevron.png', alt='Scroll top')
