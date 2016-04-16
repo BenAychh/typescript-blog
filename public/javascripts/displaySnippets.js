@@ -22,7 +22,6 @@ class DisplaySnippets {
 class Snippet {
     constructor(postInfo) {
         this.mediaDiv = document.createElement('div');
-        console.log(postInfo);
         this.mediaDiv.className = 'media';
         var giantLink = document.createElement('a');
         giantLink.className = "pull-left";

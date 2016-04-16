@@ -28,6 +28,7 @@ class DisplayPosts {
       firstChild = this.displayDiv.firstChild;
     }
     this.displayDiv.appendChild(new Post(this.post).getSection());
+    window.history.pushState({}, '', '/blog/' + id);
   }
 }
 class Post {
@@ -54,16 +55,24 @@ class Post {
     pager.className = 'pager';
     let previous = document.createElement('li');
     previous.className = 'previous';
-    previous.onclick = () => {
-      updatePost(postInfo.previous);
+    if (postInfo.previous) {
+      previous.onclick = (event) => {
+        updatePost(postInfo.previous, event);
+      }
+    } else {
+      previous.className += ' disabled';
     }
-    previous.innerHTML = '< Prev';
+    previous.innerHTML = '<a href="#">< Prev</a>';
     let next = document.createElement('li');
     next.className = 'next';
-    next.onclick = () => {
-      updatePost(postInfo.next);
+    if (postInfo.next) {
+      next.onclick = (event) => {
+        updatePost(postInfo.next, event);
+      }
+    } else {
+      next.className += ' disabled';
     }
-    next.innerHTML = 'Next >';
+    next.innerHTML = '<a href="#">Next ></a>';
     pager.appendChild(previous);
     pager.appendChild(next)
     this.section.appendChild(pager);
@@ -91,10 +100,13 @@ class Post {
   }
 }
 
-function updatePost(newId: number) {
+function updatePost(newId: number, event: Event) {
   id = newId;
   display.getPosts();
+  event.preventDefault();
+  $('#lolwut').animate({
+     scrollTop: 0,
+   }, 300);
 }
-
 let display = new DisplayPosts(<HTMLDivElement>document.getElementById('posts'));
 display.getPosts();
