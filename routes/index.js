@@ -12,7 +12,7 @@ router.get('/blog/:pId?', (req, res, next) => {
   if (req.params.pId) {
     res.render('blogs', {
       blogActive: 'active',
-      id: req.params.id,
+      id: req.params.pId,
     });
   } else {
     models.blogposts.findOne({
