@@ -1,0 +1,31 @@
+extends layout
+
+block content
+  .row.bottom
+    .col-lg-8.col-md-8.col-sm-7.col-left
+      div
+        section
+          form.form(method="POST")
+            input(type="file" id="file")
+            .form-group
+              select.form-control(name='published')
+                option(value="true") Published
+                option(value="false") Unpublished
+            .form-group
+              label.form-control(for="title") Title
+              input.form-control(type="text", name="title")
+            .form-group
+              label.form-control(for="title") Description
+              input.form-control(type="text", name="description")
+            .form-group
+              label(for="blogText") Text
+              textarea.form-control(rows=20, id='inputText' name='blogText')
+            br
+            form-group.pull-right
+              input.form-control.btn.btn-grey(type="submit")
+        section
+          div(id='inputResult')
+  script(src="/javascripts/prettyPrintMarkup.js")
+  script(src="/javascripts/bind.js")
+  script(src="/javascripts/s3FileUpload.js")
+  script(src="/javascripts/master.js")
