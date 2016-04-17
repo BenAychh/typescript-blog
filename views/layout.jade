@@ -2,7 +2,7 @@
 html
   head
     meta(charset="utf-8")
-    title Contact - Ben Hernandez
+    title #{title}
     link(rel="icon" type="image/png" href="/img/favicon.png")
     meta(name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no")
     link(href='https://fonts.googleapis.com/css?family=Inconsolata' rel='stylesheet' type='text/css')
@@ -22,15 +22,15 @@ html
                 a(href="/") work
               li.narrow(class="#{blogActive}")
                 a(href="/blog") blog
-              li.wide(class='#{contactActive}')
+              li.wide(class='#{howtonotActive}')
                 a(href="/howtonot") how to not
               li.narrow(class='#{contactActive}')
                 a(href="/contact") contact
               li.last
-                a(href="#")
-                  img(class="social" src="/img/icon/icon-facebook.png" alt="facebook")
-                a(href="#")
-                  img(class="social" src="/img/icon/icon-twitter.png" alt="twitter")
+                a(href='https://twitter.com/benaychh')
+                  img.social.bis(src='/img/icon/icon-twitter.png', alt='Twitter')
+                a(href='https://www.linkedin.com/in/benaychh')
+                  img.social.bis(src='/img/icon/icon-linkedin.png', alt='Linkedin')
       block content
     script(src="/javascripts/main.js")
     script(src="/javascripts/plugins/fastclick/fastclick.js")

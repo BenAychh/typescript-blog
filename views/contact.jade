@@ -1,0 +1,43 @@
+extends layout
+
+block content
+  .row.bottom
+    .col-lg-8.col-md-8.col-sm-7.col-left
+      section
+        .row
+          .col-lg-8.col-lg-offset-2.col-md-8.col-md-offset-2
+            h1 Contact
+            h1.spacer ___
+            p Feel free to ask questions or just drop me a line to say hi.
+            hr
+            .panel.panel-default.contact.btn-footer
+              .panel-body
+                form(role='form')
+                  .form-group
+                    label(for='contactEmail') Email address
+                    input#contactEmail.form-control(type='email')
+                  .form-group
+                    label(for='contactMessage') Message
+                    textarea#contactMessage.form-control(rows='10')
+              .panel-footer
+                a.btn.btn-grey.btn-lg.btn-block Send
+    .col-lg-4.col-md-4.col-sm-5.col-right
+      #scroll-shadow
+      section
+        .row
+          .col-lg-12
+            // panel contact
+            .panel.panel-default.item
+              .panel-heading
+                  img.img-responsive.item-img(src='img/me.png', alt='Avatar')
+              .panel-body
+                h4.item-title Ben Hernandez
+                p.item-category Full Stack Developer, in Denver
+                p.item-description 210/843-2498                  
+                hr
+                // social networks
+                .item-social.text-center
+                  a(href='https://twitter.com/benaychh')
+                    img.social.bis(src='/img/icon/icon-twitter.png', alt='Twitter')
+                  a(href='https://www.linkedin.com/in/benaychh')
+                    img.social.bis(src='/img/icon/icon-linkedin.png', alt='Linkedin')
