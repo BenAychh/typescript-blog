@@ -99,7 +99,7 @@ function updatePost(newId, event) {
     id = newId;
     display.getPosts();
     event.preventDefault();
-    $('#lolwut').animate({
+    $('#topOfPost').animate({
         scrollTop: 0,
     }, 300);
 }
