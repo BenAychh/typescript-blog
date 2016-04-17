@@ -2,21 +2,44 @@ class DisplaySnippets {
     constructor(pDisplayDiv) {
         this.snippets = [];
         this.offSet = 0;
+        this.limit = 5;
         this.displayDiv = pDisplayDiv;
     }
     getSnippets() {
-        let url = "http://localhost:3000/posts?pLimit=5&pOffset=" + this.offSet;
+        let url = "http://localhost:3000/posts/snippets?pLimit=" + this.limit
+            + "&pOffset=" + this.offSet;
         $.getJSON(url, remotePosts => {
-            remotePosts.forEach(post => {
-                this.snippets.push(new Snippet(post));
-            });
-            this.refreshPage();
+            for (let i = 0; i < Math.min(this.limit, remotePosts.length); i++) {
+                this.snippets.push(new Snippet(remotePosts[i]));
+                console.log(remotePosts[i]);
+            }
+            console.log(remotePosts.length);
+            this.refreshPage(remotePosts.length === this.limit + 1 ? true : false);
         });
     }
-    refreshPage() {
-        this.snippets.forEach((snippet) => {
+    refreshPage(more) {
+        let firstChild = this.displayDiv.firstChild;
+        while (firstChild) {
+            this.displayDiv.removeChild(firstChild);
+            firstChild = this.displayDiv.firstChild;
+        }
+        this.snippets.forEach((snippet, index) => {
             this.displayDiv.appendChild(snippet.getDiv());
         });
+        if (more) {
+            let loadMore = document.createElement('a');
+            loadMore.className = 'btn btn-default btn-lg btn-block load-more';
+            loadMore.onclick = (event) => {
+                this.loadMoreSnippets(event);
+            };
+            loadMore.innerHTML = 'Load More';
+            this.displayDiv.appendChild(loadMore);
+        }
+    }
+    loadMoreSnippets(event) {
+        event.preventDefault();
+        this.offSet += this.limit;
+        this.getSnippets();
     }
 }
 class Snippet {
