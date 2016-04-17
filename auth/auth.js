@@ -1,14 +1,7 @@
 var passport = require('passport');
 var GitHubStrategy = require('passport-github2');
-var CustomStrategy = require('passport-custom');
 var models = require('../models');
 var Users = models.users;
-
-passport.use('testing', new CustomStrategy(
-  function (req, callback) {
-    callback(null, 1);
-  }
-));
 
 passport.use(new GitHubStrategy({
     clientID: process.env.GITHUB_CLIENT_ID,

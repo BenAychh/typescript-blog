@@ -1,4 +1,4 @@
-require('dotenv').config();
+
 var express = require('express');
 var passport = require('passport');
 var path = require('path');
@@ -7,7 +7,6 @@ var logger = require('morgan');
 var session = require('express-session');
 var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
-var flash = require('connect-flash');
 
 var routes = require('./routes/index');
 var users = require('./routes/users');
@@ -30,7 +29,6 @@ app.use(express.static(path.join(__dirname, 'public')));
 app.use(session({ secret: 'keyboard cat', resave: false, saveUninitialized: false }));
 app.use(passport.initialize());
 app.use(passport.session());
-app.use(flash());
 app.use('/', routes);
 app.use('/users', users);
 app.use('/posts', posts);

@@ -3,7 +3,6 @@ var router = express.Router();
 var models = require('../models');
 var helpers = require('../auth/helpers.js');
 var aws = require('aws-sdk');
-var md5 = require('js-md5');
 var AWS_ACCESS_KEY = process.env.AWS_ACCESS_KEY;
 var AWS_SECRET_KEY = process.env.AWS_SECRET_KEY;
 var S3_BUCKET = process.env.S3_BUCKET;
