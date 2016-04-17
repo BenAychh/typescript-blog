@@ -53,6 +53,10 @@ router.get('/signS3', (req, res) => {
   });
 });
 
+router.get('/create', helpers.ensureAuthor, function (req, res, next) {
+  res.render('createblog', { title: 'Express' });
+});
+
 router.get('/:id', function (req, res, next) {
   var promises = [];
   promises.push(models.blogposts.find({
@@ -103,10 +107,6 @@ router.get('/:id', function (req, res, next) {
   .catch(err => {
     res.send('Error! ' + err);
   });
-});
-
-router.get('/create', helpers.ensureAuthor, function (req, res, next) {
-  res.render('createblog', { title: 'Express' });
 });
 
 router.post('/create', helpers.ensureAuthor, function (req, res, next) {
