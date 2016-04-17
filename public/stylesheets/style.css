@@ -157,7 +157,18 @@ body,
 .row.top .col-right nav .list-inline li {
   display: table-cell;
   padding: 0;
+  width: 20%;
+}
+.row.top .col-right nav .list-inline li.narrow{
+  display: table-cell;
+  padding: 0;
+  width: 15%;
+}
+.row.top .col-right nav .list-inline li.wide{
+  display: table-cell;
+  padding: 0;
   width: 25%;
+  white-space: nowrap;
 }
 .row.top .col-right nav .list-inline li.last a {
   display: inline;
@@ -564,6 +575,7 @@ icode table {
   margin-bottom: 1rem;
   background: rgb(231, 252, 231);
   width: 100%;
+  overflow: scroll;
 }
 icode td:last-child {
   width: 95%;
@@ -580,8 +592,3 @@ icode td:first-child{
   border: 1px solid black;
   box-sizing: border-box;
 }
-/*textarea:focus, input:focus, input[type]:focus, .uneditable-input:focus {
-    border-color: rgba(229, 103, 23, 0.8);
-    box-shadow: 0 1px 1px rgba(229, 103, 23, 0.075) inset, 0 0 8px rgba(229, 103, 23, 0.6);
-    outline: 0 none;
-}*/

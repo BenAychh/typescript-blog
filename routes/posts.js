@@ -8,13 +8,18 @@ var AWS_ACCESS_KEY = process.env.AWS_ACCESS_KEY;
 var AWS_SECRET_KEY = process.env.AWS_SECRET_KEY;
 var S3_BUCKET = process.env.S3_BUCKET;
 
-router.get('/', function (req, res, next) {
+router.get('/snippets', function (req, res, next) {
+  if (req.query.pLimit) {
+    var limit = Number(req.query.pLimit) + 1;
+  }
+
   models.blogposts.findAll({
+    attributes: ['id', 'title', 'description'],
     where: {
       published: true,
     },
     order: [['updatedAt', 'DESC']],
-    limit: req.query.pLimit,
+    limit: limit,
     offset: req.query.pOffset,
     include: [models.users],
   })

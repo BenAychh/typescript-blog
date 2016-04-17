@@ -18,12 +18,14 @@ html
         .col-lg-4.col-md-4.col-sm-5.col-right
           nav
             ul.list-inline(id="menu")
-              li(class="#{homeActive}")
-                a(href="index.html") work
-              li(class="#{blogActive}")
-                a(href="blog.html") blog
-              li(class='#{contactActive}')
-                a(href="contact.html") contact
+              li.narrow(class="#{homeActive}")
+                a(href="/") work
+              li.narrow(class="#{blogActive}")
+                a(href="/blog") blog
+              li.wide(class='#{contactActive}')
+                a(href="/howtonot") how to not
+              li.narrow(class='#{contactActive}')
+                a(href="/contact") contact
               li.last
                 a(href="#")
                   img(class="social" src="/img/icon/icon-facebook.png" alt="facebook")
