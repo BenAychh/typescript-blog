@@ -142,10 +142,10 @@ router.post('/create', helpers.ensureAuthor, function (req, res, next) {
 
 router.post('/:id/edit', helpers.ensureAuthor, (req, res, next) => {
   models.blogposts.update(req.body, {
-    where: { id: req.params.id }
+    where: { id: req.params.id },
   })
   .then(() => {
-    res.redirect('/blog/id');
+    res.redirect('/blog/' + req.params.id);
   });
 });
 
