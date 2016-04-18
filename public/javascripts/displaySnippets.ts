@@ -58,7 +58,7 @@ class Snippet {
     h4.innerHTML = postInfo.title;
     var dateP = document.createElement('p');
     dateP.className = 'article-date'
-    dateP.innerHTML = postInfo.updatedAt;
+    dateP.innerHTML = 'Updated: ' + new Date(postInfo.updatedAt);
     var descriptionP = document.createElement('p');
     descriptionP.innerHTML = postInfo.description;
     giantLink.appendChild(h4);
