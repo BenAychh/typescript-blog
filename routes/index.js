@@ -37,7 +37,7 @@ router.get('/blog/:pId?', (req, res, next) => {
     .then(result => {
       res.render('blogs', {
         blogActive: 'active',
-        id: result.id,
+        id: result ? result.id : 0,
         title: 'Blog - Ben Hernandez',
       });
     });
