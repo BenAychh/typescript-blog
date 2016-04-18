@@ -6,7 +6,7 @@ function ensureAuthenticated(req, res, next) {
       status: 'warning',
       text: 'Please login before accessing that page.',
     });
-    res.redirect('/auth/test/');
+    res.redirect('/auth/');
   }
 };
 

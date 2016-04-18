@@ -7,7 +7,7 @@ class DisplaySnippets {
     this.displayDiv = pDisplayDiv;
   }
   public getSnippets() {
-    let url = "http://localhost:3000/posts/snippets?pLimit=" + this.limit
+    let url = "/posts/snippets?pLimit=" + this.limit
       + "&pOffset=" + this.offSet;
     $.getJSON(url,
       remotePosts => {
