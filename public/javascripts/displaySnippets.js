@@ -45,10 +45,12 @@ class DisplaySnippets {
 class Snippet {
     constructor(postInfo) {
         this.mediaDiv = document.createElement('div');
-        this.mediaDiv.className = 'media';
-        var giantLink = document.createElement('a');
+        this.mediaDiv.className = 'media clickable';
+        this.mediaDiv.click = () => {
+            updatePost(postInfo.id, null);
+        };
+        var giantLink = document.createElement('p');
         giantLink.className = "pull-left";
-        giantLink.href = '/blog/' + postInfo.id;
         var subMediaDiv = document.createElement('div');
         subMediaDiv.className = 'media-body';
         var h4 = document.createElement('h4');

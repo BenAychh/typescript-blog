@@ -1,3 +1,4 @@
+/// <reference path="./displayPosts.ts"/>
 class DisplaySnippets {
   private displayDiv: HTMLDivElement;
   private snippets: Array<Snippet> = [];
@@ -48,10 +49,12 @@ class DisplaySnippets {
 class Snippet {
   private mediaDiv:HTMLDivElement = <HTMLDivElement>document.createElement('div');
   constructor(postInfo: any) {
-    this.mediaDiv.className = 'media';
-    var giantLink = <HTMLAnchorElement>document.createElement('a');
+    this.mediaDiv.className = 'media clickable';
+    this.mediaDiv.click = () => {
+      updatePost(postInfo.id, null);
+    }
+    var giantLink = document.createElement('p');
     giantLink.className="pull-left";
-    giantLink.href='/blog/' + postInfo.id;
     var subMediaDiv = document.createElement('div');
     subMediaDiv.className = 'media-body'
     var h4 = document.createElement('h4');
