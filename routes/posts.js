@@ -54,7 +54,14 @@ router.get('/signS3', (req, res) => {
 });
 
 router.get('/create', helpers.ensureAuthor, function (req, res, next) {
-  res.render('createblog', { title: 'Express' });
+  res.render('createblog', {
+    title: 'Express',
+    post: {
+      title: '',
+      description: '',
+      blogText: '',
+    },
+  });
 });
 
 router.get('/:id', function (req, res, next) {
@@ -136,6 +143,9 @@ router.post('/create', helpers.ensureAuthor, function (req, res, next) {
 router.post('/:id/edit', helpers.ensureAuthor, (req, res, next) => {
   models.blogposts.update(req.body, {
     where: { id: req.params.id }
+  })
+  .then(() => {
+    res.redirect('/blog/id');
   });
 });
 

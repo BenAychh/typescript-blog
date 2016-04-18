@@ -7,7 +7,8 @@ router.get('/', (req, res, next) => {
   passport.authenticate('github')(req, res, next);
 });
 
-router.get('/callback/', (req, res, next) => res.send(req.user)
+router.get('/callback/', passport.authenticate('github'),
+  (req, res, next) => res.redirect('/posts/create')
 );
 
 router.get('/logout', (req, res, next) => {

@@ -2,11 +2,10 @@ function ensureAuthenticated(req, res, next) {
   if (req.user) {
     next();
   } else {
-    req.flash('message', {
+    res.json({
       status: 'warning',
       text: 'Please login before accessing that page.',
     });
-    res.redirect('/auth/');
   }
 };
 
@@ -15,12 +14,10 @@ function ensureAuthor(req, res, next) {
   if (req.user && req.user.isAuthor) {
     next();
   } else {
-    console.log('Not Author');
-    req.flash('message', {
+    res.json({
       status: 'warning',
       text: 'Please login with an admin account',
     });
-    res.redirect('/');
   }
 };
 
@@ -28,7 +25,7 @@ function ensureSuper(req, res, next) {
   if (req.user.isSuper) {
     next();
   } else {
-    req.flash('message', {
+    res.json({
       status: 'warning',
       text: 'Please login with a Super Admin account',
     });
