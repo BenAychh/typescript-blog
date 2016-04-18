@@ -50,7 +50,6 @@ class Snippet {
     this.mediaDiv.className = 'media clickable';
     var giantLink = document.createElement('p');
     giantLink.onclick = () => {
-      console.log('called');
       updatePost(postInfo.id, null);
     }
     giantLink.className="pull-left";
