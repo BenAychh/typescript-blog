@@ -593,7 +593,7 @@ icode td:first-child{
   box-sizing: border-box;
 }
 .bold {
-  font-weight: bolder;
+  font-weight: 600;
 }
 .italics {
   font-style: italic;
