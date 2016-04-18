@@ -109,6 +109,16 @@ router.get('/:id', function (req, res, next) {
   });
 });
 
+router.get('/:id/edit', helpers.ensureAuthor, (req, res, next) => {
+  models.blogposts.findById(req.params.id)
+  .then(post => {
+    res.render('createblog', {
+      title: 'Express',
+      post: post,
+    });
+  });
+});
+
 router.post('/create', helpers.ensureAuthor, function (req, res, next) {
   var postInfo = req.body;
   postInfo.createdAt = new Date();
@@ -120,6 +130,12 @@ router.post('/create', helpers.ensureAuthor, function (req, res, next) {
   })
   .catch(function (err) {
     res.send('Error!: ', err);
+  });
+});
+
+router.post('/:id/edit', helpers.ensureAuthor, (req, res, next) => {
+  models.blogposts.update(req.body, {
+    where: { id: req.params.id }
   });
 });
 
