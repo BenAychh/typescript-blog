@@ -11,9 +11,7 @@ class DisplaySnippets {
         $.getJSON(url, remotePosts => {
             for (let i = 0; i < Math.min(this.limit, remotePosts.length); i++) {
                 this.snippets.push(new Snippet(remotePosts[i]));
-                console.log(remotePosts[i]);
             }
-            console.log(remotePosts.length);
             this.refreshPage(remotePosts.length === this.limit + 1 ? true : false);
         });
     }
@@ -46,10 +44,11 @@ class Snippet {
     constructor(postInfo) {
         this.mediaDiv = document.createElement('div');
         this.mediaDiv.className = 'media clickable';
-        this.mediaDiv.click = () => {
+        var giantLink = document.createElement('p');
+        giantLink.onclick = () => {
+            console.log('called');
             updatePost(postInfo.id, null);
         };
-        var giantLink = document.createElement('p');
         giantLink.className = "pull-left";
         var subMediaDiv = document.createElement('div');
         subMediaDiv.className = 'media-body';

@@ -98,7 +98,9 @@ class Post {
 function updatePost(newId, event) {
     id = newId;
     display.getPosts();
-    event.preventDefault();
+    if (event) {
+        event.preventDefault();
+    }
     $('#topOfPost').animate({
         scrollTop: 0,
     }, 300);

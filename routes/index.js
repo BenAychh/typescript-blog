@@ -33,6 +33,9 @@ router.get('/blog/:pId?', (req, res, next) => {
   } else {
     models.blogposts.findOne({
       order: [['id', 'DESC']],
+      where: {
+        published: true,
+      },
     })
     .then(result => {
       res.render('blogs', {
