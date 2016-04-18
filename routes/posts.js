@@ -13,7 +13,7 @@ router.get('/snippets', function (req, res, next) {
   }
 
   models.blogposts.findAll({
-    attributes: ['id', 'title', 'description'],
+    attributes: ['id', 'title', 'description', 'updatedAt'],
     where: {
       published: true,
     },
