@@ -51,7 +51,7 @@ class Snippet {
     this.mediaDiv.className = 'media';
     var giantLink = <HTMLAnchorElement>document.createElement('a');
     giantLink.className="pull-left";
-    giantLink.href='#';
+    giantLink.href='/blog/' + postInfo.id;
     var subMediaDiv = document.createElement('div');
     subMediaDiv.className = 'media-body'
     var h4 = document.createElement('h4');
