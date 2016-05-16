@@ -39,16 +39,17 @@ class Post {
         author.innerHTML = 'Author: ' + postInfo.user.userName;
         this.section.appendChild(author);
         let date = document.createElement('h4');
+        date.className = 'subheader';
         date.innerHTML = 'Created: ' + new Date(postInfo.createdAt) + '<br>'
             + 'Updated: ' + new Date(postInfo.updatedAt);
         this.section.appendChild(date);
         let bodyP = document.createElement('p');
         bodyP.innerHTML = ppm.parser(postInfo.blogText.split('\r').join(''));
         this.section.appendChild(bodyP);
-        let pager = document.createElement('ul');
-        pager.className = 'pager';
-        let previous = document.createElement('li');
-        previous.className = 'previous';
+        let blogControl = document.createElement('div');
+        blogControl.className = 'blogControl share';
+        let previous = document.createElement('div');
+        previous.className = 'prev';
         if (postInfo.previous) {
             previous.onclick = (event) => {
                 updatePost(postInfo.previous, event);
@@ -58,7 +59,7 @@ class Post {
             previous.className += ' disabled';
         }
         previous.innerHTML = '<a href="#">< Prev</a>';
-        let next = document.createElement('li');
+        let next = document.createElement('div');
         next.className = 'next';
         if (postInfo.next) {
             next.onclick = (event) => {
@@ -69,26 +70,23 @@ class Post {
             next.className += ' disabled';
         }
         next.innerHTML = '<a href="#">Next ></a>';
-        pager.appendChild(previous);
-        pager.appendChild(next);
-        this.section.appendChild(pager);
+        blogControl.appendChild(previous);
+        blogControl.appendChild(next);
         let sharing = document.createElement('div');
-        sharing.className = 'row';
+        sharing.className = 'blogControl share';
         let shareWord = document.createElement('div');
-        shareWord.className = 'col-lg-4 col-md-4 col-sm-4 col-xs-4';
-        let shareWordh3 = document.createElement('h3');
-        shareWordh3.className = 'share';
-        shareWordh3.innerHTML = 'Share';
+        shareWord.className = 'prev';
+        shareWord.innerHTML = 'share';
         let shareButtons = document.createElement('div');
-        shareButtons.className = 'col-lg-8 col-md-8 col-sm-8 col-xs-8 text-right';
+        shareButtons.className = 'next';
         shareButtons.innerHTML =
-            '<a href="#"><img class="social" src="/img/icon/icon-mail.png" alt="Mail"></a>'
-                + '<a href="#"><img class="social" src="/img/icon/icon-facebook.png" alt="Facebook"></a>'
-                + '<a href="#"><img class="social" src="/img/icon/icon-twitter.png" alt="Twitter"></a>'
-                + '<a href="#"><img class="social" src="/img/icon/icon-google.png" alt="icon-google.png"></a>';
+            '<a href="http://github.com/benaychh"><i class="icon-envelope icons"></i></a>'
+                + '<a href="http://github.com/benaychh"><i class="icon-social-facebook icons"></i></a>'
+                + '<a href="http://github.com/benaychh"><i class="icon-social-twitter icons"></i></a>'
+                + '<a href="http://github.com/benaychh"><i class="icon-social-google icons"></i></a>';
         sharing.appendChild(shareWord);
-        shareWord.appendChild(shareWordh3);
         sharing.appendChild(shareButtons);
+        this.section.appendChild(blogControl);
         this.section.appendChild(sharing);
     }
     getSection() {

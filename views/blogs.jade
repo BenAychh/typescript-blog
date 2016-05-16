@@ -1,11 +1,10 @@
 extends layout
 
 block content
-  .row.bottom
-    .col-lg-8.col-md-8.col-sm-7.col-left#topOfPost
-      div(id="posts")
-    .col-lg-4.col-md-4.col-sm-5.col-right#topOfSnippets
-      section.blog(id='snippets')
+  .container
+    article.content#posts
+    .sideMain#snippets
+
   script var id = #{id};
   script(src="/javascripts/prettyPrintMarkup.js")
   script(src="/javascripts/displayPosts.js")

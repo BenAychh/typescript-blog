@@ -5,32 +5,26 @@ html
     title #{title}
     link(rel="icon" type="image/png" href="/img/favicon.png")
     meta(name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no")
-    link(href='https://fonts.googleapis.com/css?family=Inconsolata' rel='stylesheet' type='text/css')
-    link(rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous")
-    link(href="/stylesheets/style.css" rel="stylesheet" media="screen")
+    link(rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/simple-line-icons/2.3.1/css/simple-line-icons.css")
+    link(href="https://fonts.googleapis.com/css?family=Ubuntu:400,700" rel="stylesheet" type="text/css")
+    link(href="https://fonts.googleapis.com/css?family=Krona+One" rel="stylesheet" type="text/css")
+    link(href="https://fonts.googleapis.com/css?family=Indie+Flower" rel="stylesheet" type="text/css")
+    link(href="/stylesheets/main.css" rel="stylesheet" media="screen")
     script(src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.0/jquery.min.js")
   body
-    .container(class="container" id="top")
-      .row.top
-        .col-lg-8.col-md-8.col-sm-7.col-left
-          .name
-            a(href="index.html") Ben Hernandez
-        .col-lg-4.col-md-4.col-sm-5.col-right
-          nav
-            ul.list-inline(id="menu")
-              li.narrow(class="#{homeActive}")
-                a(href="/") work
-              li.narrow(class="#{blogActive}")
-                a(href="/blog") blog
-              li.wide(class='#{howtonotActive}')
-                a(href="/howtonot") how to not
-              li.narrow(class='#{contactActive}')
-                a(href="/contact") contact
-              li.last
-                a(href='https://twitter.com/benaychh')
-                  img.social.bis(src='/img/icon/icon-twitter.png', alt='Twitter')
-                a(href='https://www.linkedin.com/in/benaychh')
-                  img.social.bis(src='/img/icon/icon-linkedin.png', alt='Linkedin')
+    .pageContainer
+      nav
+        .header Ben Hernandez
+        .links
+          .link Work
+          .link Blog
+          .link How&nbsp;To&nbsp;Not
+          .link Contact
+          .link.social
+            a(href="http://linkedin.com/in/benaychh")
+              i.icon-social-linkedin.icons
+            a(href="http://github.com/benaychh")
+              i.icon-social-github.icons
       block content
     script(src="/javascripts/main.js")
     script(src="/javascripts/plugins/fastclick/fastclick.js")

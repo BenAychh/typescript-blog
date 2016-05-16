@@ -1,0 +1,199 @@
+html {
+  height: 100%;
+}
+body {
+  margin: 0;
+  font-family: 'Ubuntu', sans-serif;
+  height: 100%;
+}
+.pageContainer {
+  margin: 0;
+  padding: 0;
+  max-height: 100%;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+}
+nav {
+  display: flex;
+  flex-direction: row;
+  width: 100vw;
+  max-height: 50px;
+  min-height: 50px;
+  background: rgb(151, 116, 161);
+}
+.links {
+  display: flex;
+  flex: 0 0 450px;
+  justify-content: space-around;
+  height: 50px;
+  min-height: 50px;
+  background: rgb(255, 255, 255)
+}
+.link {
+  flex: 2;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-top: 1px solid rgb(52, 148, 255);
+  border-left: 1px solid rgb(52, 148, 255);
+  border-right: 1px solid rgb(52, 148, 255);
+  border-top-left-radius: 5px;
+  border-top-right-radius: 5px;
+  cursor: pointer;
+  font-family: 'Indie Flower', cursive;
+  text-transform: uppercase;
+  font-size: 24px;
+  padding: 2px;
+}
+link:hover {
+  background-color: rgb(175, 199, 226);
+}
+.link > a {
+  color: rgb(0, 0, 0);
+  text-decoration: none;
+}
+.link > a > i {
+  font-size: 36px;
+}
+.links > .active {
+  background-color: rgb(175, 199, 226);
+}
+.links > .social {
+  padding : 3px;
+  flex: 1;
+}
+.header {
+  background: rgb(175, 199, 226);
+  height: 50px;
+  min-height: 50px;
+  flex: 1;
+  font-size: 50px;
+  box-sizing: border-box;
+  font-family: 'Indie Flower', cursive;
+}
+.link:hover {
+  background-color: rgb(175, 199, 226);
+}
+.social:hover {
+  background-color: white;
+}
+.container {
+  display: flex;
+  flex-direction: row;
+  flex: 1;
+  height: 100%;
+}
+.content {
+  flex: 1;
+  position: relative;
+  padding: 50px;
+  overflow: scroll;
+  height: 100vh;
+  box-sizing: border-box;
+}
+.spacer {
+  font-size: 36px;
+  margin-top: -45px;
+}
+.sideMain {
+  padding: 10px;
+  overflow: auto;
+  flex: 0 0 450px;
+  background: rgb(175, 199, 226);
+  box-sizing: border-box;
+  border-left: 1px solid rgb(52, 148, 255);
+  height: 100vh;
+}
+.img-responsive {
+  width: 100%;
+  height: auto;
+}
+
+.subheader {
+  color: rgb(125, 125, 125);
+}
+.vertPanel {
+  margin-left: 2%;
+  margin-top: 5%;
+  box-sizing: border-box;
+  width: 47%;
+  float: left;
+  height: 325px;
+  background-color: rgb(255, 255, 255);
+  padding: 5px;
+}
+.vertPanel:nth-child(2n + 1) {
+  clear: left;
+}
+.vertPanel > h1 {
+  text-align: center;
+  font-size: 14px;
+  text-transform: uppercase;
+  line-height: 80%;
+}
+.vertPanel > h2 {
+  text-align: center;
+  font-size: 12px;
+  color: rgb(115, 115, 115);
+  line-height: 80%;
+}
+.vertPanel > p {
+  font-size: 14px;
+}
+.blogControl {
+  font-size: 36px;
+  margin-top: 20px;
+  clear: both;
+  font-family: 'Indie Flower', cursive;
+}
+.blogControl > div {
+  display: inline;
+}
+.share {
+  margin-top: 40px;
+  position: relative;
+}
+.prev {
+  float: left;
+}
+.prev > a {
+  text-decoration: none;
+  color: rgb(0, 0, 0);
+}
+.next {
+  float: right;
+}
+.next > a {
+  text-decoration: none;
+  color: rgb(0, 0, 0);
+}
+#posts {
+  font-size: 18px;
+}
+block {
+  border-left: 5px solid rgb(199, 199, 199);
+  padding-left: 5px;
+  display: block;
+}
+.border {
+  border: 1px solid black;
+  box-sizing: border-box;
+}
+.bold {
+  font-weight: 600;
+}
+.italics {
+  font-style: italic;
+}
+.strikethrough {
+  text-decoration: line-through;
+}
+.block {
+  border-left: 5px solid rgb(199, 199, 199);
+  padding-left: 5px;
+  display: block;
+}
+.clickable {
+  cursor: pointer;
+}

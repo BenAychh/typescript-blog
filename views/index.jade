@@ -1,66 +1,48 @@
 extends layout
 
 block content
-  .row.bottom
-    .col-lg-8.col-md-8.col-sm-7.col-left
-      div
-        section
-          .col-lg-12
-            h1 Hello, I am a former math teacher turned developer.
-            h1.spacer ____
-            p.work Originally from San Antonio, TX and currently in Denver, CO
-            p.work (This website is under construction)
-            p.
-                I have a BS in Mathematics from UTSA (birds up!) and I love math puzzles, playing chess and coding.
-            p.
-                Teaching was the best seven years of my life and I wouldn't trade it for everything.
-                However, I felt myself becoming stagnant and didn't feel like I was growing anymore.
-                I have always been attracted to programming and often made little apps in Geogebra and Java to help my students understand the material.
-                In January 2016, I enrolled in the Full Stack program at Galvanize (Golden Triangle).
-                Galvanize has a great curriculum which includes:
-            ul
-              li Node
-              li JQuery
-              li Postgresql
-              li Knexjs
-              li Angular
-              li Mongo
-            p In my spare time, I have tried to branch out a little bit and have taught myself
-            ul
-              li
-                a(href="https://github.com/BenAychh/basic-graphing/tree/master/Graphing/net/candhcapital/Graphing") Java
-              li
-                a(href="https://github.com/BenAychh/typescript-blog/blob/master/test/blogs.test.js") Sequelize (in the context of supertest)
-              li React (Link coming soon!)
-              li
-                a(href="https://github.com/BenAychh/typescript-blog/tree/master/public/javascripts") Typescript (My blog is written in Typescript and trans-compiled to JS)
-              li
-                a(href="https://github.com/BenAychh/plpgsql-graphing-functions") plpgsql
-            p Feel free to check out some of my other projects/experiments to the right!
-    .col-lg-4.col-md-4.col-sm-5.col-right
-      #scroll-shadow
-      h1.visible-xs.section-header Last work
-      h1.visible-xs.text-center.spacer ___
-      // work choice
-      .item-choice
-        a.filter(href='#', data-filter='all') All
-        a.filter(href='#', data-filter='javascript')  Javascript
-        a.filter(href='#', data-filter='Java')  Java
+  .container
+    article.content
+      h1 Hello, I am a former math teacher turned developer.
+      h1.spacer ____
+      p.work Originally from San Antonio, TX and currently in Denver, CO
+      p.work (This website is under construction)
+      p.
+          I have a BS in Mathematics from UTSA (birds up!) and I love math puzzles, playing chess and coding.
+      p.
+          Teaching was the best seven years of my life and I wouldn't trade it for everything.
+          However, I felt myself becoming stagnant and didn't feel like I was growing anymore.
+          I have always been attracted to programming and often made little apps in Geogebra and Java to help my students understand the material.
+          In January 2016, I enrolled in the Full Stack program at Galvanize (Golden Triangle).
+          Galvanize has a great curriculum which includes:
+      ul
+        li Node
+        li JQuery
+        li Postgresql
+        li Knexjs
+        li Angular
+        li Mongo
+      p In my spare time, I have tried to branch out a little bit and have taught myself
+      ul
+        li
+          a(href="https://github.com/BenAychh/basic-graphing/tree/master/Graphing/net/candhcapital/Graphing") Java
+        li
+          a(href="https://github.com/BenAychh/typescript-blog/blob/master/test/blogs.test.js") Sequelize (in the context of supertest)
+        li React (Link coming soon!)
+        li
+          a(href="https://github.com/BenAychh/typescript-blog/tree/master/public/javascripts") Typescript (My blog is written in Typescript and trans-compiled to JS)
+        li
+          a(href="https://github.com/BenAychh/plpgsql-graphing-functions") plpgsql
+      p Feel free to check out some of my other projects/experiments to the right!
+    .sideMain
+      h1 Latest work
+      h1.spacer ___
+      .vertPanel
+        img.img-responsive(src="http://benaychh.io/img/work/calculator.png" alt="calculator")
+        h1 Graphing Calculator
+        h2 Javascript
+        p A full-featured graphing calculator build in vanilla JS, using &lt;canvas&gt;
         hr
-      section#Grid.row
-      // work 1
-      .col-lg-6.col-md-12.col-sm-12.col-xs-6.mix.web-design
-        .panel.panel-default.item
-          .panel-heading
-            a(href='project-example.html')
-              img.img-responsive.item-img(src='/img/work/calculator.png', alt='Work 1')
-          .panel-body
-            a(href='project-example.html')
-              h4.item-title Graphing Calculator
-            // work category
-            p.item-category Javascript
-            // work short description
-            p.item-description A full-featured graphing calculator build in vanilla JS, using &lt;canvas&gt;
-            hr
-            // work tags
-            p.item-tags Javascript, Vanilla, Canvas
+        p.technologies Canvas, MathJax
+      .vertPanel
+      .vertPanel
