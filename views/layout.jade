@@ -7,8 +7,8 @@ html
     meta(name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no")
     link(rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/simple-line-icons/2.3.1/css/simple-line-icons.css")
     link(href="https://fonts.googleapis.com/css?family=Ubuntu:400,700" rel="stylesheet" type="text/css")
-    link(href="https://fonts.googleapis.com/css?family=Krona+One" rel="stylesheet" type="text/css")
     link(href="https://fonts.googleapis.com/css?family=Indie+Flower" rel="stylesheet" type="text/css")
+    link(href='https://fonts.googleapis.com/css?family=Alegreya+Sans+SC:400,900' rel='stylesheet' type='text/css')
     link(href="/stylesheets/main.css" rel="stylesheet" media="screen")
     script(src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.0/jquery.min.js")
   body
@@ -16,10 +16,12 @@ html
       nav
         .header Ben Hernandez
         .links
-          .link Work
-          .link Blog
-          .link How&nbsp;To&nbsp;Not
-          .link Contact
+          .link
+            a(href="/") Work
+          .link
+            a(href="/blog") Blog
+          .link
+            a(href="/contact") Contact
           .link.social
             a(href="http://linkedin.com/in/benaychh")
               i.icon-social-linkedin.icons

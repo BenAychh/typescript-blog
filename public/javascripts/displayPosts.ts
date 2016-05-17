@@ -55,7 +55,7 @@ class Post {
     let blogControl = document.createElement('div');
     blogControl.className = 'blogControl share';
     let previous = document.createElement('div');
-    previous.className = 'prev';
+    previous.className = 'prev clickable';
     if (postInfo.previous) {
       previous.onclick = (event) => {
         updatePost(postInfo.previous, event);
@@ -63,9 +63,9 @@ class Post {
     } else {
       previous.className += ' disabled';
     }
-    previous.innerHTML = '<a href="#">< Prev</a>';
+    previous.innerHTML = '< Prev';
     let next = document.createElement('div');
-    next.className = 'next';
+    next.className = 'next clickable';
     if (postInfo.next) {
       next.onclick = (event) => {
         updatePost(postInfo.next, event);
@@ -73,7 +73,7 @@ class Post {
     } else {
       next.className += ' disabled';
     }
-    next.innerHTML = '<a href="#">Next ></a>';
+    next.innerHTML = 'Next >';
     blogControl.appendChild(previous);
     blogControl.appendChild(next)
     let sharing = document.createElement('div');
@@ -84,10 +84,10 @@ class Post {
     let shareButtons = document.createElement('div');
     shareButtons.className = 'next';
     shareButtons.innerHTML =
-      '<a href="http://github.com/benaychh"><i class="icon-envelope icons"></i></a>'
-      + '<a href="http://github.com/benaychh"><i class="icon-social-facebook icons"></i></a>'
-      + '<a href="http://github.com/benaychh"><i class="icon-social-twitter icons"></i></a>'
-      + '<a href="http://github.com/benaychh"><i class="icon-social-google icons"></i></a>'
+      '<a href="mailto:?body=http://benaychh.io/blog/' + id + '&subject=' + postInfo.title + '"><i class="icon-envelope icons"></i></a>'
+      + '<a target="_blank" href="http://www.facebook.com/sharer/sharer.php?u=http://benaychh.io/blog/' + id + '&title=' + postInfo.title.split(' ').join('%20') + '"><i class="icon-social-facebook icons"></i></a>'
+      + '<a target="_blank" href="http://twitter.com/intent/tweet?status=' +  postInfo.title.split(' ').join('%20') + '+' + 'http://benaychh.io/blog/' + id + '"><i class="icon-social-twitter icons"></i></a>'
+      + '<a href="https://plus.google.com/share?url=' + 'http://benaychh.io/blog/' + id + '"><i class="icon-social-google icons"></i></a>'
     sharing.appendChild(shareWord);
     sharing.appendChild(shareButtons);
     this.section.appendChild(blogControl);

@@ -3,7 +3,7 @@ extends layout
 block content
   .container
     article.content
-      h1 Hello, I am a former math teacher turned developer.
+      h1 Tenacious, team-playing former math teacher turned developer.
       h1.spacer ____
       p.work Originally from San Antonio, TX and currently in Denver, CO
       p.work (This website is under construction)
@@ -35,14 +35,53 @@ block content
           a(href="https://github.com/BenAychh/plpgsql-graphing-functions") plpgsql
       p Feel free to check out some of my other projects/experiments to the right!
     .sideMain
-      h1 Latest work
-      h1.spacer ___
-      .vertPanel
-        img.img-responsive(src="http://benaychh.io/img/work/calculator.png" alt="calculator")
-        h1 Graphing Calculator
-        h2 Javascript
-        p A full-featured graphing calculator build in vanilla JS, using &lt;canvas&gt;
-        hr
-        p.technologies Canvas, MathJax
-      .vertPanel
-      .vertPanel
+      h1 Projects
+      div
+        .vertPanel
+          div.image
+            img.img-responsive(src="https://raw.githubusercontent.com/BenAychh/basic-graphing/master/demo.png")
+          a.prev(href="https://github.com/BenAychh/basic-graphing")
+            i.icon-social-github.icons
+          a.next(href="https://github.com/BenAychh/plpgsql-graphing-functions")
+            i.icon-social-github.icons
+          h1 Stock Graphing Library
+          h2 Java
+          p A graphing library w/ PL/pgSQL functions I built so my friend could graph stock data he had collected.
+          hr
+          p.technologies JPanel, Graphics2D, Customized ZonedDateTime
+        .vertPanel
+          div.image
+            img.img-responsive(src="https://github.com/dsudia/fitter/raw/master/fitter-screen.png" alt="Twitter Graphs")
+          a.prev(href="https://github.com/dsudia/fitter")
+            i.icon-social-github.icons
+          a.next(href="https://github.com/BenAychh/react-twitter-client")
+            i.icon-social-github.icons
+          h1 Twitter Firehose w/ React Client
+          h2 Java, Javascript
+          p A Twitter Firehose consumer (left) with a React-based demo client (right).
+          hr
+          p.technologies Twitter-HBC, React, SparkJava, Chart.JS
+        .vertPanel
+          div.image
+            img.img-responsive(src="https://raw.githubusercontent.com/BenAychh/ticketSales/master/ss7.png" alt="Ticket Sales")
+          a.prev(href="http://school-tickets.herokuapp.com/1")
+            i.icon-screen-desktop.icons
+          a.next(href="https://github.com/BenAychh/ticketSales")
+            i.icon-social-github.icons
+          h1 School Ticket Sales
+          h2 JavaScript
+          p An app designed to facilitate fast sales and check-in at school events.
+          hr
+          p.technologies JQuery, Postgres, Knex.JS
+        .vertPanel
+          div.image
+            img.img-responsive(src="http://benaychh.io/img/work/calculator.png" alt="Beautiful Graphs")
+          a.prev(href="http://calculator.benaychh.io")
+            i.icon-screen-desktop.icons
+          a.next(href="https://github.com/BenAychh/Calculator-G19-BenHernandez")
+            i.icon-social-github.icons
+          h1 Graphing Calculator
+          h2 Javascript
+          p A full-featured graphing calculator build in vanilla JS, using &lt;canvas&gt;
+          hr
+          p.technologies Canvas, MathJax, Math.JS

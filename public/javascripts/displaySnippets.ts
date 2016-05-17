@@ -47,14 +47,10 @@ class DisplaySnippets {
 class Snippet {
   private mediaDiv:HTMLDivElement = <HTMLDivElement>document.createElement('div');
   constructor(postInfo: any) {
-    this.mediaDiv.className = 'media clickable';
-    var giantLink = document.createElement('p');
-    giantLink.onclick = () => {
+    this.mediaDiv.className = 'horzPanel clickable';
+    this.mediaDiv.onclick = () => {
       updatePost(postInfo.id, null);
     }
-    giantLink.className="pull-left";
-    var subMediaDiv = document.createElement('div');
-    subMediaDiv.className = 'media-body'
     var h4 = document.createElement('h4');
     h4.innerHTML = postInfo.title;
     var dateP = document.createElement('p');
@@ -62,12 +58,9 @@ class Snippet {
     dateP.innerHTML = 'Updated: ' + new Date(postInfo.updatedAt);
     var descriptionP = document.createElement('p');
     descriptionP.innerHTML = postInfo.description;
-    giantLink.appendChild(h4);
-    giantLink.appendChild(dateP);
-    giantLink.appendChild(descriptionP);
-    subMediaDiv.appendChild(giantLink);
-    subMediaDiv.appendChild(giantLink);
-    this.mediaDiv.appendChild(subMediaDiv);
+    this.mediaDiv.appendChild(h4);
+    this.mediaDiv.appendChild(dateP);
+    this.mediaDiv.appendChild(descriptionP);
   }
   public getDiv() {
     return this.mediaDiv;

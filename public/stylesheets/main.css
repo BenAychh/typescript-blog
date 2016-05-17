@@ -22,6 +22,9 @@ nav {
   min-height: 50px;
   background: rgb(151, 116, 161);
 }
+h1 {
+  font-family: 'Alegreya Sans SC', sans-serif;
+}
 .links {
   display: flex;
   flex: 0 0 450px;
@@ -41,8 +44,8 @@ nav {
   border-top-left-radius: 5px;
   border-top-right-radius: 5px;
   cursor: pointer;
-  font-family: 'Indie Flower', cursive;
-  text-transform: uppercase;
+  font-family: 'Alegreya Sans SC', sans-serif;
+  text-transform: capitalize;
   font-size: 24px;
   padding: 2px;
 }
@@ -70,7 +73,7 @@ link:hover {
   flex: 1;
   font-size: 50px;
   box-sizing: border-box;
-  font-family: 'Indie Flower', cursive;
+  font-family: 'Alegreya Sans SC', sans-serif;
 }
 .link:hover {
   background-color: rgb(175, 199, 226);
@@ -103,7 +106,6 @@ link:hover {
   background: rgb(175, 199, 226);
   box-sizing: border-box;
   border-left: 1px solid rgb(52, 148, 255);
-  height: 100vh;
 }
 .img-responsive {
   width: 100%;
@@ -115,13 +117,14 @@ link:hover {
 }
 .vertPanel {
   margin-left: 2%;
-  margin-top: 5%;
+  margin-top: 20px;
   box-sizing: border-box;
   width: 47%;
   float: left;
-  height: 325px;
+  height: 350px;
   background-color: rgb(255, 255, 255);
   padding: 5px;
+  margin-bottom: 20px;
 }
 .vertPanel:nth-child(2n + 1) {
   clear: left;
@@ -140,6 +143,23 @@ link:hover {
 }
 .vertPanel > p {
   font-size: 14px;
+}
+.vertPanel > a {
+  color: black;
+  text-decoration: none;
+}
+.vertPanel > div {
+  clear: both;
+  display: block;
+}
+.horzPanel {
+  margin-left: 2%;
+  margin-top: 5%;
+  box-sizing: border-box;
+  width: 96%;
+  float: left;
+  background-color: rgb(255, 255, 255);
+  padding: 5px;
 }
 .blogControl {
   font-size: 36px;
@@ -196,4 +216,37 @@ block {
 }
 .clickable {
   cursor: pointer;
+}
+.disabled {
+  color: rgb(134, 134, 134);
+  cursor: not-allowed;
+}
+.formGroup {
+  width: 100%;
+  margin-bottom: 20px;
+}
+.formGroup > label {
+  border-bottom: 1px solid black;
+  border-right: 1px solid black;
+  font-family: 'Alegreya Sans SC', sans-serif;
+  padding: 3px;
+  margin-bottom: 10px;
+}
+.formGroup > input, textarea {
+  clear: both;
+  display: block;
+  width: 100%;
+  box-sizing: border-box;
+  font-size: 16px;
+  padding: 3px;
+  margin-top: 10px;
+}
+button {
+  font-family: 'Alegreya Sans SC', sans-serif;
+  font-size: 24px;
+  background-color: rgb(175, 199, 226);
+  border: none;
+}
+.icons {
+  font-size: 36px
 }
