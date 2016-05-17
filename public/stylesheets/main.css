@@ -74,6 +74,11 @@ link:hover {
   font-size: 50px;
   box-sizing: border-box;
   font-family: 'Alegreya Sans SC', sans-serif;
+  vertical-align: top;
+  line-height: 95%;
+}
+.header > a {
+  text-decoration: none;
 }
 .link:hover {
   background-color: rgb(175, 199, 226);
