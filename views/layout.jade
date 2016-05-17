@@ -17,11 +17,11 @@ html
       nav
         .header Ben Hernandez
         .links
-          .link
+          .link(class=typeof homeActive === "undefined" ? '' : "active")
             a(href="/") Work
-          .link
+          .link(class=typeof blogActive === "undefined" ? '' : "active")
             a(href="/blog") Blog
-          .link
+          .link(class=typeof contactActive === "undefined" ? '' : "active")
             a(href="/contact") Contact
           .link.social
             a(href="http://linkedin.com/in/benaychh")
