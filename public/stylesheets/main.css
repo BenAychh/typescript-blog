@@ -250,3 +250,48 @@ button {
 .icons {
   font-size: 36px
 }
+icode {
+  font-family: 'Inconsolata';
+  background: rgb(231, 252, 231);
+}
+icode table {
+  margin-top: 1rem;
+  margin-bottom: 1rem;
+  background: rgb(231, 252, 231);
+  width: 100%;
+  overflow: scroll;
+}
+icode td:last-child {
+  width: 95%;
+  padding-left: 3px;
+}
+icode td:first-child{
+  border-right: 2px solid rgb(119, 250, 119);
+  width: 5%;
+}
+#posts {
+  font-size: 18px;
+}
+block {
+  border-left: 5px solid rgb(199, 199, 199);
+  padding-left: 5px;
+  display: block;
+}
+.border {
+  border: 1px solid black;
+  box-sizing: border-box;
+}
+.bold {
+  font-weight: 600;
+}
+.italics {
+  font-style: italic;
+}
+.strikethrough {
+  text-decoration: line-through;
+}
+.block {
+  border-left: 5px solid rgb(199, 199, 199);
+  padding-left: 5px;
+  display: block;
+}
