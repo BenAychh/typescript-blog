@@ -104,7 +104,7 @@ function updatePost(newId: number, event: Event) {
   if (event) {
     event.preventDefault();
   }
-  $('#topOfPost').animate({
+  $('#posts').animate({
      scrollTop: 0,
    }, 300);
 }
