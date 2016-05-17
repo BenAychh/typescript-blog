@@ -34,6 +34,7 @@ class DisplayPosts {
 class Post {
   private section = document.createElement('section');
   constructor(postInfo: any) {
+    document.title = postInfo.title;
     let title = document.createElement('h1');
     title.innerHTML = postInfo.title
     this.section.appendChild(title);
