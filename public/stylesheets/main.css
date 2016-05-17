@@ -108,8 +108,9 @@ link:hover {
   border-left: 1px solid rgb(52, 148, 255);
 }
 .img-responsive {
-  width: 100%;
+  max-width: 100%;
   height: auto;
+  display: block;
 }
 
 .subheader {
