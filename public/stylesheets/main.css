@@ -122,13 +122,16 @@ link:hover {
   box-sizing: border-box;
   width: 47%;
   float: left;
-  height: 350px;
+  height: 400px;
   background-color: rgb(255, 255, 255);
   padding: 5px;
   margin-bottom: 20px;
 }
 .vertPanel:nth-child(2n + 1) {
   clear: left;
+}
+.vertPanel > .image {
+  min-height: 150px;
 }
 .vertPanel > h1 {
   text-align: center;
@@ -145,13 +148,24 @@ link:hover {
 .vertPanel > p {
   font-size: 14px;
 }
-.vertPanel > a {
+.vertPanel a {
   color: black;
   text-decoration: none;
+}
+.vertPanel a:hover {
+  color: rgb(52, 148, 255);
 }
 .vertPanel > div {
   clear: both;
   display: block;
+  overflow: auto;
+  margin-top: 10px;
+}
+.vertPanel > div > .left {
+  float: left;
+}
+.vertPanel >  div > .right {
+  float: right;
 }
 .horzPanel {
   margin-left: 2%;
